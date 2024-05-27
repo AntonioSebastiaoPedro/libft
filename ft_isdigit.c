@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ansebast <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/15 13:01:59 by ansebast          #+#    #+#             */
-/*   Updated: 2024/05/15 14:16:19 by ansebast         ###   ########.fr       */
+/*   Created: 2024/05/27 09:20:11 by ansebast          #+#    #+#             */
+/*   Updated: 2024/05/27 09:20:13 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isdigit(int ch)
+int	ft_isdigit(int c)
 {
-	if (ch >= '0' && ch <= '9')
-		return (1);
-	return (0);
+	return ((c >= '0' && c <= '9'));
 }

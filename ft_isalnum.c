@@ -3,19 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ansebast <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/15 14:17:28 by ansebast          #+#    #+#             */
-/*   Updated: 2024/05/15 14:27:31 by ansebast         ###   ########.fr       */
+/*   Created: 2024/05/27 09:19:49 by ansebast          #+#    #+#             */
+/*   Updated: 2024/05/27 09:19:51 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isalnum(int ch)
+int	ft_isalnum(int c)
 {
-	if ((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z')
-		|| ch >= '0' && ch <= '9')
-	{
-		return (1);
-	}
-	return (0);
+	return ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')
+		|| (c >= '0' && c <= '9'));
 }

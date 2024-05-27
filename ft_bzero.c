@@ -3,40 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ansebast <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/17 12:00:13 by ansebast          #+#    #+#             */
-/*   Updated: 2024/05/17 13:11:35 by ansebast         ###   ########.fr       */
+/*   Created: 2024/05/27 09:15:11 by ansebast          #+#    #+#             */
+/*   Updated: 2024/05/27 09:18:40 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include <stdio.h>
+#include "libft.h"
 
-void	*ft_bzero(void *s, size_t n)
+void	ft_bzero(void *s, size_t n)
 {
-	unsigned char	*p;
+	size_t			i;
+	unsigned char	*suc;
 
-	p = (unsigned char *)s;
-	while (n--)
-		*p++ = 0;
-	return (s);
-}
-/*
-int	main(void)
-{
-	char			buffer[20];
-	unsigned long	i;
-
-	ft_bzero(buffer, sizeof(buffer));
-	buffer[sizeof(buffer) - 1] = '\0';
-	printf("Buffer após ft_bzero:\n");
 	i = 0;
-	while (i < sizeof(buffer) - 1)
+	suc = (unsigned char *)s;
+	while (i < n)
 	{
-		printf("%02x ", (unsigned char)buffer[i]);
+		suc[i] = 0;
 		i++;
 	}
-	printf("\n");
-	return (0);
+	s = suc;
 }
-*/

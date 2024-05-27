@@ -1,25 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/27 09:35:06 by ansebast          #+#    #+#             */
-/*   Updated: 2024/05/27 09:35:07 by ansebast         ###   ########.fr       */
+/*   Created: 2024/05/27 09:33:15 by ansebast          #+#    #+#             */
+/*   Updated: 2024/05/27 09:33:16 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *s)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	int	i;
+	t_list	*element;
+	t_list	*listreturn;
+	void	*temp;
 
-	i = 0;
-	if (!s)
+	if (!lst || !f || !del)
 		return (0);
-	while (s[i] != '\0')
-		i++;
-	return (i);
+	element = NULL;
+	listreturn = NULL;
+	while (lst)
+	{
+		temp = f(lst->content);
+		element = ft_lstnew(temp);
+		if (!element)
+		{
+			del(temp);
+			ft_lstclear(&listreturn, del);
+			return (listreturn);
+		}
+		ft_lstadd_back(&listreturn, element);
+		lst = lst->next;
+	}
+	return (listreturn);
 }

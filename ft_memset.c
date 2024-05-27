@@ -3,40 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ansebast <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/17 12:00:13 by ansebast          #+#    #+#             */
-/*   Updated: 2024/05/17 12:56:47 by ansebast         ###   ########.fr       */
+/*   Created: 2024/05/27 09:33:56 by ansebast          #+#    #+#             */
+/*   Updated: 2024/05/27 09:33:59 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include <stdio.h>
+#include "libft.h"
 
-void	*ft_memset(void *s, int c, size_t n)
+void	*ft_memset(void *b, int c, size_t n)
 {
-	unsigned char	*p;
+	size_t			i;
+	unsigned char	*buc;
 
-	p = (unsigned char *)s;
-	while (n--)
-		*p++ = (unsigned char)c;
-	return (s);
-}
-/*
-int	main(void)
-{
-	char			buffer[50];
-	unsigned long	i;
-
-	ft_memset(buffer, 'A', sizeof(buffer));
-	buffer[sizeof(buffer) - 1] = '\0';
-	printf("Buffer após ft_memset: %s\n", buffer);
 	i = 0;
-	while (i < sizeof(buffer) - 1)
+	buc = (unsigned char *)b;
+	while (i < n)
 	{
-		printf("%02x ", (unsigned char)buffer[i]);
+		buc[i] = c;
 		i++;
 	}
-	printf("\n");
-	return (0);
+	return (b = buc);
 }
-*/
