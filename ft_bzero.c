@@ -5,10 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/29 05:49:56 by ansebast          #+#    #+#             */
-/*   Updated: 2024/05/29 05:50:24 by ansebast         ###   ########.fr       */
+/*   Created: 2024/05/29 11:27:51 by ansebast          #+#    #+#             */
+/*   Updated: 2024/05/29 11:27:54 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 void	ft_bzero(void *s, size_t size)
 {
