@@ -5,35 +5,35 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/24 09:19:22 by ansebast          #+#    #+#             */
-/*   Updated: 2024/05/27 09:18:40 by ansebast         ###   ########.fr       */
+/*   Created: 2024/05/29 05:49:36 by ansebast          #+#    #+#             */
+/*   Updated: 2024/05/29 05:49:38 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *str)
+int	ft_atoi(const char *nptr)
 {
 	int	i;
 	int	sign;
-	int	result;
+	int	nb;
 
-	result = 0;
 	i = 0;
-	sign = 1;
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
+	while (nptr[i] == ' ' || nptr[i] == '\f' || nptr[i] == '\n'
+		|| nptr[i] == '\r' || nptr[i] == '\t' || nptr[i] == '\v')
 		i++;
-	if (str[i] == '+' || str[i] == '-')
+	sign = 1;
+	if (nptr[i] == '-' || nptr[i] == '+')
 	{
-		if (str[i] == '-')
+		if (nptr[i] == '-')
 			sign *= -1;
 		i++;
 	}
-	while (str[i] >= 48 && str[i] <= 57)
+	nb = 0;
+	while (ft_isdigit(nptr[i]))
 	{
-		result *= 10;
-		result += str[i] - 48;
+		nb = nb * 10 + nptr[i] - '0';
 		i++;
 	}
-	return (result * sign);
+	return (nb * sign);
 }

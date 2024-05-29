@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/27 09:34:53 by ansebast          #+#    #+#             */
-/*   Updated: 2024/05/27 09:34:56 by ansebast         ###   ########.fr       */
+/*   Created: 2024/05/29 05:54:05 by ansebast          #+#    #+#             */
+/*   Updated: 2024/05/29 05:54:08 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,28 @@
 
 size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
-	size_t	l_src;
-	size_t	l_dst;
-	size_t	index;
-	size_t	indexj;
+	size_t	dst_len;
+	size_t	src_len;
+	size_t	space_left;
+	size_t	i;
+	char	*s;
 
-	index = 0;
-	indexj = 0;
-	l_src = ft_strlen((char *)src);
-	l_dst = ft_strlen(dst);
-	if (l_dst >= size)
-		return (size + l_src);
-	while (dst[index])
-		index++;
-	while (src[indexj] && index < size - 1)
+	s = (char *)src;
+	dst_len = 0;
+	src_len = 0;
+	while (dst_len < size && dst[dst_len] != '\0')
+		dst_len++;
+	while (s[src_len] != '\0')
+		src_len++;
+	if (dst_len == size)
+		return (size + src_len);
+	space_left = size - dst_len;
+	i = 0;
+	while (i < space_left - 1 && src[i] != '\0')
 	{
-		dst[index++] = src[indexj++];
+		dst[dst_len + i] = src[i];
+		i++;
 	}
-	dst[index] = '\0';
-	return ((l_dst + l_src));
+	dst[dst_len + i] = '\0';
+	return (dst_len + src_len);
 }

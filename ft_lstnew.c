@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/27 09:33:21 by ansebast          #+#    #+#             */
-/*   Updated: 2024/05/27 09:33:23 by ansebast         ###   ########.fr       */
+/*   Created: 2024/05/29 05:52:14 by ansebast          #+#    #+#             */
+/*   Updated: 2024/05/29 05:52:15 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 t_list	*ft_lstnew(void *content)
 {
-	t_list	*lista;
+	t_list	*elt;
 
-	lista = (t_list *)malloc(sizeof(t_list));
-	if (lista == NULL)
+	elt = (t_list *)malloc(sizeof(t_list));
+	if (!elt)
 		return (NULL);
-	lista->content = content;
-	lista->next = NULL;
-	return (lista);
+	elt->content = content;
+	elt->next = NULL;
+	return (elt);
 }

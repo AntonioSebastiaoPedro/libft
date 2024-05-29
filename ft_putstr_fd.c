@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/27 09:34:19 by ansebast          #+#    #+#             */
-/*   Updated: 2024/05/27 09:34:21 by ansebast         ###   ########.fr       */
+/*   Created: 2024/05/29 05:53:24 by ansebast          #+#    #+#             */
+/*   Updated: 2024/05/29 05:53:26 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,19 @@
 
 void	ft_putstr_fd(char *s, int fd)
 {
-	int	i;
+	int		i;
+	char	a;
 
 	i = 0;
-	while (s[i])
+	a = ' ';
+	if (s == 0)
+		write(fd, &a, 1);
+	else
 	{
-		ft_putchar_fd(s[i], fd);
-		i++;
+		while (s[i])
+		{
+			write(fd, &s[i], 1);
+			i++;
+		}
 	}
 }

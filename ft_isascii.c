@@ -5,12 +5,15 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/27 09:19:31 by ansebast          #+#    #+#             */
-/*   Updated: 2024/05/27 09:19:35 by ansebast         ###   ########.fr       */
+/*   Created: 2024/05/29 05:50:48 by ansebast          #+#    #+#             */
+/*   Updated: 2024/05/29 05:50:50 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_isascii(int c)
 {
-	return ((c >= 0 && c <= 127));
+	if (c >= 0 && c <= 127)
+		return (1);
+	else
+		return (0);
 }

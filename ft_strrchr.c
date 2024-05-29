@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/27 09:35:32 by ansebast          #+#    #+#             */
-/*   Updated: 2024/05/27 09:35:33 by ansebast         ###   ########.fr       */
+/*   Created: 2024/05/29 05:54:50 by ansebast          #+#    #+#             */
+/*   Updated: 2024/05/29 05:54:52 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 char	*ft_strrchr(const char *str, int c)
 {
-	int	i;
+	const char	*last_occurrence;
 
-	i = 0;
-	while (str[i])
-		i++;
-	while (i >= 0)
+	last_occurrence = NULL;
+	while (*str != '\0')
 	{
-		if (str[i] == (char)c)
-			return ((char *)(str + i));
-		i--;
+		if (*str == (char)c)
+			last_occurrence = str;
+		str++;
 	}
-	return (0);
+	if (c == '\0')
+		return ((char *)str);
+	return ((char *)last_occurrence);
 }

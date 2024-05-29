@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/27 09:36:27 by ansebast          #+#    #+#             */
-/*   Updated: 2024/05/27 09:36:28 by ansebast         ###   ########.fr       */
+/*   Created: 2024/05/29 05:55:16 by ansebast          #+#    #+#             */
+/*   Updated: 2024/05/29 05:55:17 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_toupper(int c)
 {
 	if (c >= 'a' && c <= 'z')
-		return (c - ('a' - 'A'));
+		return (c - 32);
 	return (c);
 }

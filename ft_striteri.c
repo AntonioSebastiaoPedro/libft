@@ -5,19 +5,28 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/27 09:34:42 by ansebast          #+#    #+#             */
-/*   Updated: 2024/05/27 09:34:44 by ansebast         ###   ########.fr       */
+/*   Created: 2024/05/29 05:53:52 by ansebast          #+#    #+#             */
+/*   Updated: 2024/05/29 05:53:53 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_striteri(char *s, void (*f)(unsigned int, char *))
+#include "libft.h"
+
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	unsigned int	i;
+	int		i;
+	char	a;
 
 	i = 0;
-	while (s[i])
+	a = ' ';
+	if (s != 0)
 	{
-		f(i, s + i);
-		i++;
+		while (s[i])
+		{
+			f(i, &s[i]);
+			i++;
+		}
 	}
+	else
+		f(i, &a);
 }

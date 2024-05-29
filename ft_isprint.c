@@ -5,12 +5,15 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/27 09:20:18 by ansebast          #+#    #+#             */
-/*   Updated: 2024/05/27 09:20:20 by ansebast         ###   ########.fr       */
+/*   Created: 2024/05/29 05:51:01 by ansebast          #+#    #+#             */
+/*   Updated: 2024/05/29 05:51:03 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_isprint(int c)
 {
-	return (c >= 32 && c <= 126);
+	if (c >= 32 && c <= 126)
+		return (1);
+	else
+		return (0);
 }

@@ -5,12 +5,15 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/27 09:20:11 by ansebast          #+#    #+#             */
-/*   Updated: 2024/05/27 09:20:13 by ansebast         ###   ########.fr       */
+/*   Created: 2024/05/29 05:50:55 by ansebast          #+#    #+#             */
+/*   Updated: 2024/05/29 05:50:57 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_isdigit(int c)
 {
-	return ((c >= '0' && c <= '9'));
+	if (c >= '0' && c <= '9')
+		return (1);
+	else
+		return (0);
 }

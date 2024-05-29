@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/27 09:33:44 by ansebast          #+#    #+#             */
-/*   Updated: 2024/05/27 09:33:46 by ansebast         ###   ########.fr       */
+/*   Created: 2024/05/29 05:52:43 by ansebast          #+#    #+#             */
+/*   Updated: 2024/05/29 05:52:44 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,17 @@
 
 void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	char		*d;
-	const char	*s;
-	size_t		i;
+	size_t			i;
+	unsigned char	*d;
+	unsigned char	*s;
 
-	if ((dest == src) || n == 0)
-		return (dest);
-	if (!dest && !src)
-		return (0);
-	d = (char *)dest;
-	s = (const char *)src;
+	d = (unsigned char *)dest;
+	s = (unsigned char *)src;
 	i = 0;
 	while (i < n)
 	{
 		d[i] = s[i];
 		i++;
 	}
-	return (dest = d);
+	return (dest);
 }

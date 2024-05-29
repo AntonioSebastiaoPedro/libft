@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/27 09:34:48 by ansebast          #+#    #+#             */
-/*   Updated: 2024/05/27 09:34:50 by ansebast         ###   ########.fr       */
+/*   Created: 2024/05/29 05:53:58 by ansebast          #+#    #+#             */
+/*   Updated: 2024/05/29 05:53:59 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,24 @@
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	size_t	size_s1;
-	size_t	size_s2;
+	size_t	len_s1;
+	size_t	len_s2;
 	size_t	i;
-	size_t	j;
-	char	*new;
+	char	*result;
 
-	i = 0;
-	j = 0;
-	size_s1 = ft_strlen((char *)s1);
-	size_s2 = ft_strlen((char *)s2);
-	new = (char *)malloc(((size_s1 + size_s2) + (1)) * sizeof(char));
-	if (!new || (!s1 && !s2))
-		return (0);
-	while (s1[i] != '\0')
-	{
-		new[i] = s1[i];
-		i++;
-	}
-	while (s2[j] != '\0')
-		new[i++] = s2[j++];
-	new[i] = '\0';
-	return (new);
+	if (s1 == NULL || s2 == NULL)
+		return (NULL);
+	len_s1 = ft_strlen(s1);
+	len_s2 = ft_strlen(s2);
+	result = (char *)malloc(len_s1 + len_s2 + 1);
+	if (result == NULL)
+		return (NULL);
+	i = -1;
+	while (++i < len_s1 && s1[i] != '\0')
+		result[i] = s1[i];
+	i = -1;
+	while (++i < len_s2 && s2[i] != '\0')
+		result[len_s1 + i] = s2[i];
+	result[len_s1 + i] = '\0';
+	return (result);
 }

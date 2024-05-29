@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/27 09:35:20 by ansebast          #+#    #+#             */
-/*   Updated: 2024/05/27 09:35:21 by ansebast         ###   ########.fr       */
+/*   Created: 2024/05/29 05:54:34 by ansebast          #+#    #+#             */
+/*   Updated: 2024/05/29 05:54:36 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,10 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
 	size_t	i;
 
-	i = 0;
-	if (n == 0)
+	if (!n)
 		return (0);
-	while ((i < n - 1) && (*(const unsigned char *)(s1
-			+ i) == *(const unsigned char *)(s2 + i))
-		&& *(const unsigned char *)(s1 + i) && *(const unsigned char *)(s2 + i))
-	{
+	i = 0;
+	while (i < (n - 1) && s1[i] == s2[i] && s1[i] && s2[i])
 		i++;
-	}
-	return ((*(const unsigned char *)(s1 + i)
-		-*(const unsigned char *)(s2 + i)));
+	return ((int)((unsigned char)s1[i] - (unsigned char)s2[i]));
 }

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/27 09:32:59 by ansebast          #+#    #+#             */
-/*   Updated: 2024/05/27 09:33:00 by ansebast         ###   ########.fr       */
+/*   Created: 2024/05/29 05:51:33 by ansebast          #+#    #+#             */
+/*   Updated: 2024/05/29 05:51:35 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {
-	if (!lst || !del)
-		return ;
-	del(lst->content);
+	(del)(lst->content);
 	free(lst);
-	lst = NULL;
 }

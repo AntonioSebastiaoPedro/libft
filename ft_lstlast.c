@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/27 09:33:09 by ansebast          #+#    #+#             */
-/*   Updated: 2024/05/27 09:33:10 by ansebast         ###   ########.fr       */
+/*   Created: 2024/05/29 05:51:47 by ansebast          #+#    #+#             */
+/*   Updated: 2024/05/29 05:51:48 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,12 @@
 
 t_list	*ft_lstlast(t_list *lst)
 {
-	int	tamlist;
-	int	i;
-
-	i = 0;
-	tamlist = ft_lstsize(lst);
-	while (i < tamlist - 1)
+	if (lst == NULL)
+		return (0);
+	while (lst)
 	{
-		i++;
+		if (lst->next == NULL)
+			return (lst);
 		lst = lst->next;
 	}
 	return (lst);

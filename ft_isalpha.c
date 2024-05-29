@@ -5,12 +5,15 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/27 09:19:23 by ansebast          #+#    #+#             */
-/*   Updated: 2024/05/27 09:19:25 by ansebast         ###   ########.fr       */
+/*   Created: 2024/05/29 05:50:42 by ansebast          #+#    #+#             */
+/*   Updated: 2024/05/29 05:50:44 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_isalpha(int c)
 {
-	return ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'));
+	if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
+		return (1);
+	else
+		return (0);
 }

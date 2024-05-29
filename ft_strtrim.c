@@ -5,46 +5,47 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/27 09:35:38 by ansebast          #+#    #+#             */
-/*   Updated: 2024/05/27 09:35:39 by ansebast         ###   ########.fr       */
+/*   Created: 2024/05/29 05:54:56 by ansebast          #+#    #+#             */
+/*   Updated: 2024/05/29 05:54:58 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_verify(char s1, char *set)
+static int	is_in_set(char c, const char *set)
 {
-	int	i;
-
-	i = 0;
-	while (set[i])
+	while (*set)
 	{
-		if (set[i] == s1)
+		if (c == *set)
 			return (1);
-		i++;
+		set++;
 	}
 	return (0);
 }
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	size_t	start;
-	size_t	end;
+	size_t	len;
 	size_t	i;
-	char	*snew;
+	char	*start;
+	char	*end;
+	char	*str_strimmed;
 
-	end = ft_strlen((char *)s1);
-	start = 0;
-	while (s1[start] && ft_verify(s1[start], (char *)set))
+	if (s1 == NULL || set == NULL)
+		return (NULL);
+	start = (char *)s1;
+	end = (char *)(s1 + ft_strlen(s1) - 1);
+	while (*start && is_in_set(*start, set))
 		start++;
-	while (end > start && ft_verify(s1[end - 1], (char *)set))
+	while (end > start && is_in_set(*end, set))
 		end--;
-	snew = (char *)malloc(((end - start) + 1) * sizeof(char));
-	if (!snew)
-		return (0);
-	i = 0;
-	while (start < end)
-		snew[i++] = s1[start++];
-	snew[i] = '\0';
-	return (snew);
+	len = end - start + 1;
+	str_strimmed = (char *)malloc(len + 1);
+	if (str_strimmed == NULL)
+		return (NULL);
+	i = -1;
+	while (++i < len)
+		str_strimmed[i] = start[i];
+	str_strimmed[len] = '\0';
+	return (str_strimmed);
 }

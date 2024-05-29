@@ -5,22 +5,22 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/27 09:18:30 by ansebast          #+#    #+#             */
-/*   Updated: 2024/05/27 09:18:40 by ansebast         ###   ########.fr       */
+/*   Created: 2024/05/29 05:50:19 by ansebast          #+#    #+#             */
+/*   Updated: 2024/05/29 05:50:21 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_calloc(size_t count, size_t size)
+void	*ft_calloc(size_t num, size_t size)
 {
-	void	*element;
+	size_t	total_size;
+	void	*ptr;
 
-	if (size != 0 && count > (size_t) - 1 / size)
+	total_size = num * size;
+	ptr = malloc(total_size);
+	if (ptr == NULL)
 		return (NULL);
-	element = malloc(count * size);
-	if (!element)
-		return (NULL);
-	ft_bzero(element, (count * size));
-	return (element);
+	ft_memset(ptr, 0, total_size);
+	return (ptr);
 }

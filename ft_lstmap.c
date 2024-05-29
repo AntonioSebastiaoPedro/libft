@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/27 09:33:15 by ansebast          #+#    #+#             */
-/*   Updated: 2024/05/27 09:33:16 by ansebast         ###   ########.fr       */
+/*   Created: 2024/05/29 05:51:52 by ansebast          #+#    #+#             */
+/*   Updated: 2024/05/29 05:51:54 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,27 @@
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list	*element;
-	t_list	*listreturn;
-	void	*temp;
+	t_list	*new_list;
+	t_list	*save;
 
 	if (!lst || !f || !del)
 		return (0);
-	element = NULL;
-	listreturn = NULL;
+	new_list = ft_lstnew(f(lst->content));
+	if (!new_list)
+		return (0);
+	save = new_list;
+	lst = lst->next;
 	while (lst)
 	{
-		temp = f(lst->content);
-		element = ft_lstnew(temp);
-		if (!element)
+		new_list->next = ft_lstnew(f(lst->content));
+		if (!new_list->next)
 		{
-			del(temp);
-			ft_lstclear(&listreturn, del);
-			return (listreturn);
+			ft_lstclear(&save, del);
+			return (0);
 		}
-		ft_lstadd_back(&listreturn, element);
+		new_list = new_list->next;
 		lst = lst->next;
 	}
-	return (listreturn);
+	new_list->next = NULL;
+	return (save);
 }

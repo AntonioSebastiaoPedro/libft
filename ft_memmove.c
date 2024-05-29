@@ -5,28 +5,38 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/27 09:33:49 by ansebast          #+#    #+#             */
-/*   Updated: 2024/05/27 09:33:52 by ansebast         ###   ########.fr       */
+/*   Created: 2024/05/29 05:52:49 by ansebast          #+#    #+#             */
+/*   Updated: 2024/05/29 05:52:51 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dest, const void *src, size_t len)
+void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	char	*d;
-	char	*s;
+	size_t			i;
+	unsigned char	*d;
+	unsigned char	*s;
 
-	d = (char *)dest;
-	s = (char *)src;
-	if (dest == src)
-		return (dest);
-	if (s < d)
+	d = (unsigned char *)dest;
+	s = (unsigned char *)src;
+	if (d < s)
 	{
-		while (len--)
-			*(d + len) = *(s + len);
+		i = 0;
+		while (i < n)
+		{
+			d[i] = s[i];
+			i++;
+		}
 	}
 	else
-		ft_memcpy(d, s, len);
+	{
+		i = n;
+		while (i > 0)
+		{
+			d[i - 1] = s[i - 1];
+			i--;
+		}
+	}
 	return (dest);
 }

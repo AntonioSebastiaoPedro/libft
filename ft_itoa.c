@@ -5,58 +5,58 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/27 09:20:24 by ansebast          #+#    #+#             */
-/*   Updated: 2024/05/27 09:20:26 by ansebast         ###   ########.fr       */
+/*   Created: 2024/05/29 05:51:07 by ansebast          #+#    #+#             */
+/*   Updated: 2024/05/29 05:51:10 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	ft_digitlen(long n)
+static int	ft_nbrlen(long n)
 {
-	size_t	len;
+	int	strlen;
 
+	strlen = 0;
 	if (n == 0)
 		return (1);
-	len = 0;
-	if (n < 0)
+	else if (n < 0)
 	{
+		strlen++;
 		n *= -1;
-		len++;
 	}
 	while (n > 0)
 	{
 		n /= 10;
-		len++;
+		strlen++;
 	}
-	return (len);
+	return (strlen);
 }
 
 char	*ft_itoa(int n)
 {
+	int		len;
 	long	nbr;
-	size_t	i;
-	size_t	n_len;
 	char	*str;
 
-	nbr = (long)n;
-	n_len = ft_digitlen(nbr);
-	str = (char *)malloc(sizeof(char) * (n_len + 1));
+	nbr = n;
+	len = ft_nbrlen(nbr);
+	str = (char *)malloc(sizeof(char) * (len + 1));
 	if (!str)
 		return (NULL);
-	i = 0;
-	if (n == 0)
-		str[i] = '0';
-	if (nbr < 0)
+	*(str + len--) = '\0';
+	if (nbr == 0)
 	{
-		str[0] = '-';
+		*(str + 0) = '0';
+	}
+	else if (nbr < 0)
+	{
 		nbr *= -1;
+		*(str + 0) = '-';
 	}
 	while (nbr > 0)
 	{
-		str[(n_len - 1) - i++] = (nbr % 10) + '0';
+		*(str + len--) = (48 + (nbr % 10));
 		nbr /= 10;
 	}
-	str[n_len] = 0;
 	return (str);
 }

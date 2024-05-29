@@ -5,27 +5,32 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/27 09:35:01 by ansebast          #+#    #+#             */
-/*   Updated: 2024/05/27 09:35:02 by ansebast         ###   ########.fr       */
+/*   Created: 2024/05/29 05:54:12 by ansebast          #+#    #+#             */
+/*   Updated: 2024/05/29 05:54:14 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcpy(char *dest, const char *src, size_t dstsize)
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
-	size_t	len_src;
-	size_t	index;
+	size_t	i;
+	size_t	src_len;
+	char	*s;
 
-	index = 0;
-	len_src = ft_strlen((char *)src);
-	if (dstsize == 0)
-		return (len_src);
-	while (src[index] && index < dstsize - 1)
+	s = (char *)src;
+	src_len = 0;
+	i = 0;
+	while (*s++)
+		src_len++;
+	if (size > 0)
 	{
-		dest[index] = src[index];
-		index++;
+		while (i < size - 1 && src[i] != '\0')
+		{
+			dst[i] = src[i];
+			i++;
+		}
+		dst[i] = '\0';
 	}
-	dest[index] = '\0';
-	return (len_src);
+	return (src_len);
 }
