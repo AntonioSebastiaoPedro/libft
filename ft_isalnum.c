@@ -6,15 +6,13 @@
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 11:28:04 by ansebast          #+#    #+#             */
-/*   Updated: 2024/05/29 11:28:07 by ansebast         ###   ########.fr       */
+/*   Updated: 2024/08/03 08:26:17 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isalnum(int c)
+#include "libft.h"
+
+int	ft_isalnum(int ch)
 {
-	if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')
-		|| (c >= '0' && c <= '9'))
-		return (1);
-	else
-		return (0);
+	return (ft_isalpha(ch) || ft_isdigit(ch));
 }
