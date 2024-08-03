@@ -6,7 +6,7 @@
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 11:30:01 by ansebast          #+#    #+#             */
-/*   Updated: 2024/08/03 10:26:04 by ansebast         ###   ########.fr       */
+/*   Updated: 2024/08/03 15:04:47 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ void    *ft_memset(void *first, int value, size_t num)
 
         ptr = (unsigned char *) first;
         while (num--)
-        {
                 *ptr++ = (unsigned char) value;
-        }
         return (first);
 }
