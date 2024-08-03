@@ -6,14 +6,11 @@
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 11:28:20 by ansebast          #+#    #+#             */
-/*   Updated: 2024/05/29 11:28:22 by ansebast         ###   ########.fr       */
+/*   Updated: 2024/08/03 08:26:30 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isascii(int c)
+int	ft_isascii(int ch)
 {
-	if (c >= 0 && c <= 127)
-		return (1);
-	else
-		return (0);
+	return (ch >= 0 && ch <= 127);
 }
