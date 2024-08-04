@@ -95,19 +95,47 @@ char    *ftstrchr(const char *str, int c)
         return (NULL);
 }
 
+char    *ftstrrchr(const char *str, int c)
+{
+        size_t  len;
+
+        len = strlen(str);
+        while (len--)
+                if (str[len] == c)
+                        return ((char *)&str[len]);
+        return (NULL);
+}
+
+// int main() {
+//     char str[] = "Olá, mundo!";
+//     char *ptr;
+
+//     // Procura a primeira ocorrência da letra 'm'
+//     ptr = ftstrchr(str, '\0');
+
+//     if (ptr != NULL) {
+//         printf("O caractere foi encontrado em: %s = %p\n", ptr, ptr);
+//         printf("Anterior: %s = %p\n", ptr-1, ptr-1);
+//     } else {
+//         printf("O caractere não foi encontrado.\n");
+//     }
+
+//     return 0;
+// }
+
 int main() {
-    char str[] = "Olá, mundo!";
+    char str[] = "Olá, mundo, mundo!";
     char *ptr;
 
-    // Procura a primeira ocorrência da letra 'm'
-    ptr = ftstrchr(str, '\0');
+    // Procura a última ocorrência da letra 'm'
+    ptr = ftstrrchr(str, 'd');
 
     if (ptr != NULL) {
-        printf("O caractere foi encontrado em: %s = %p\n", ptr, ptr);
-        printf("Anterior: %s = %p\n", ptr-1, ptr-1);
+        printf("O último caractere foi encontrado em: %s\n", ptr);
     } else {
         printf("O caractere não foi encontrado.\n");
     }
 
     return 0;
+    
 }
