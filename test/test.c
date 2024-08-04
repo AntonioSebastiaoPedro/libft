@@ -87,16 +87,27 @@ size_t  ftstrlcat(char *dest, const char *src, size_t size_dest)
         return (dest_len + strlen(src));
 }
 
+char    *ftstrchr(const char *str, int c)
+{
+        while (*str++)
+                if (*str == c)
+                        return ((char *)str);
+        return (NULL);
+}
+
 int main() {
-    char destino[20] = "Olá, ";
-    char origem[] = "mundo! Eu sou-mau!";
-    size_t tamanho = sizeof(destino);
+    char str[] = "Olá, mundo!";
+    char *ptr;
 
-    // Calcula o espaço restante: 20 - 6 = 14
-    size_t novo_tamanho = ft_strlcat(destino, origem, tamanho);
+    // Procura a primeira ocorrência da letra 'm'
+    ptr = ftstrchr(str, '\0');
 
-    printf("String resultante: %s\n", destino); // Imprime "Olá, mundo!"
-    printf("Tamanho total (incluindo nulo): %zu\n", novo_tamanho);
+    if (ptr != NULL) {
+        printf("O caractere foi encontrado em: %s = %p\n", ptr, ptr);
+        printf("Anterior: %s = %p\n", ptr-1, ptr-1);
+    } else {
+        printf("O caractere não foi encontrado.\n");
+    }
 
     return 0;
 }
