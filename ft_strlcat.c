@@ -6,7 +6,7 @@
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 11:31:30 by ansebast          #+#    #+#             */
-/*   Updated: 2024/08/04 07:17:19 by ansebast         ###   ########.fr       */
+/*   Updated: 2024/08/04 08:04:52 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ size_t  ft_strlcat(char *dest, const char *src, size_t size_dest)
         size_t  remaining;
         size_t  i;
 
-        dest_len = strlen(dest);
+        dest_len = ft_strlen(dest);
         remaining = size_dest - dest_len - 1;
         i = 0;
         while (i < remaining && src[i] != '\0')
@@ -27,5 +27,5 @@ size_t  ft_strlcat(char *dest, const char *src, size_t size_dest)
                 i++;
         }
         dest[dest_len + i] = '\0';
-        return (dest_len + strlen(src));
+        return (dest_len + ft_strlen(src));
 }
