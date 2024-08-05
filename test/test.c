@@ -106,36 +106,61 @@ char    *ftstrrchr(const char *str, int c)
         return (NULL);
 }
 
-// int main() {
-//     char str[] = "Olá, mundo!";
-//     char *ptr;
+int     ftstrncmp(const char *str1, const char *str2, size_t num)
+{
+        size_t  i;
 
-//     // Procura a primeira ocorrência da letra 'm'
-//     ptr = ftstrchr(str, '\0');
-
-//     if (ptr != NULL) {
-//         printf("O caractere foi encontrado em: %s = %p\n", ptr, ptr);
-//         printf("Anterior: %s = %p\n", ptr-1, ptr-1);
-//     } else {
-//         printf("O caractere não foi encontrado.\n");
-//     }
-
-//     return 0;
-// }
+        i = 0;
+        while (i < num)
+        {
+                if (str1[i] != str2[i] || !str1[i] || !str2[i])
+                {
+                        return (unsigned char)str1[i] - (unsigned char)str2[i];
+                }
+                i++;
+        }
+        return (0);
+}
 
 int main() {
-    char str[] = "Olá, mundo, mundo!";
-    char *ptr;
+    char str1[] = "acbcde";
+    char str2[] = "abcdef";
+    int resultado;
 
-    // Procura a última ocorrência da letra 'm'
-    ptr = ftstrrchr(str, 'd');
-
-    if (ptr != NULL) {
-        printf("O último caractere foi encontrado em: %s\n", ptr);
+    // Comparando as duas strings inteiras
+    printf("=============ORIGINAL==================\n");
+    resultado = strncmp(str1, str2, 7); // O tamanho máximo é irrelevante aqui
+    if (resultado == 0) {
+        printf("As strings são iguais: %d.\n", resultado);
     } else {
-        printf("O caractere não foi encontrado.\n");
+        printf("As strings são diferentes: %d.\n", resultado);
+    }
+
+    // Comparando apenas os primeiros 5 caracteres
+    resultado = strncmp(str1, str2, 5);
+    if (resultado == 0) {
+        printf("Os primeiros 5 caracteres são iguais: %d.\n", resultado);
+    } else {
+        printf("Os primeiros 5 caracteres são diferentes: %d.\n", resultado);
+    }
+
+
+    printf("=============CUSTOM==================\n");
+    // Comparando as duas strings inteiras
+    resultado = ftstrncmp(str1, str2, 7); // O tamanho máximo é irrelevante aqui
+    if (resultado == 0) {
+        printf("As strings são iguais: %d.\n", resultado);
+    } else {
+        printf("As strings são diferentes: %d.\n", resultado);
+    }
+
+    // Comparando apenas os primeiros 5 caracteres
+    resultado = ftstrncmp(str1, str2, 5);
+    if (resultado == 0) {
+        printf("Os primeiros 5 caracteres são iguais: %d.\n", resultado);
+    } else {
+        printf("Os primeiros 5 caracteres são diferentes: %d.\n", resultado);
     }
 
     return 0;
-    
 }
