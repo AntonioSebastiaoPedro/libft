@@ -6,26 +6,19 @@
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 11:29:38 by ansebast          #+#    #+#             */
-/*   Updated: 2024/05/29 11:29:40 by ansebast         ###   ########.fr       */
+/*   Updated: 2024/08/05 17:12:33 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memchr(const void *ptr, int value, size_t num)
+void    *ft_memchr(const void *str, int ch, size_t num)
 {
-	unsigned char	*p;
-	unsigned char	v;
-	size_t			i;
+        unsigned char   *ptr;
 
-	i = 0;
-	p = (unsigned char *)ptr;
-	v = (unsigned char)value;
-	while (i < num)
-	{
-		if (p[i] == v)
-			return ((void *)(ptr + i));
-		i++;
-	}
-	return (NULL);
+        ptr = (unsigned char *)str;
+        while (num--)
+                if (*ptr++ == (unsigned char)ch)
+                        return ((void *)ptr - 1);
+        return (NULL);
 }

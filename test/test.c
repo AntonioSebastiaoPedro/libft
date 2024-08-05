@@ -2,7 +2,7 @@
 #include <string.h>
 #include "../libft.h"
 
-void    *memset(void *first, int value, size_t num)
+void *memset(void *first, int value, size_t num)
 {
         unsigned char *ptr;
 
@@ -12,7 +12,7 @@ void    *memset(void *first, int value, size_t num)
         return (first);
 }
 
-void    bzero(void *first2, size_t num2)
+void bzero(void *first2, size_t num2)
 {
         memset(first2, '\0', num2);
 }
@@ -29,7 +29,7 @@ void *ft_memcpy(void *dest, const void *src, size_t num)
         return (dest);
 }
 
-void    *ft_memmove(void *dest, const void *src, size_t num)
+void *ft_memmove(void *dest, const void *src, size_t num)
 {
         unsigned char *s;
         unsigned char *d;
@@ -42,16 +42,16 @@ void    *ft_memmove(void *dest, const void *src, size_t num)
                 while (num--)
                         *d++ = *s++;
         else
-                while(num--)
+                while (num--)
                         d[num] = s[num];
         return (dest);
 }
 
-size_t  ft_strlcpy(char *dest, const char *src, size_t size)
+size_t ft_strlcpy(char *dest, const char *src, size_t size)
 {
-        size_t  len;
-        size_t  i;
-        char    *s;
+        size_t len;
+        size_t i;
+        char *s;
 
         s = (char *)src;
         i = 0;
@@ -69,11 +69,11 @@ size_t  ft_strlcpy(char *dest, const char *src, size_t size)
         return (len);
 }
 
-size_t  ftstrlcat(char *dest, const char *src, size_t size_dest)
+size_t ftstrlcat(char *dest, const char *src, size_t size_dest)
 {
-        size_t  dest_len;
-        size_t  remaining;
-        size_t  i;
+        size_t dest_len;
+        size_t remaining;
+        size_t i;
 
         dest_len = strlen(dest);
         remaining = size_dest - dest_len - 1;
@@ -87,7 +87,7 @@ size_t  ftstrlcat(char *dest, const char *src, size_t size_dest)
         return (dest_len + strlen(src));
 }
 
-char    *ftstrchr(const char *str, int c)
+char *ftstrchr(const char *str, int c)
 {
         while (*str++)
                 if (*str == c)
@@ -95,9 +95,9 @@ char    *ftstrchr(const char *str, int c)
         return (NULL);
 }
 
-char    *ftstrrchr(const char *str, int c)
+char *ftstrrchr(const char *str, int c)
 {
-        size_t  len;
+        size_t len;
 
         len = strlen(str);
         while (len--)
@@ -106,9 +106,9 @@ char    *ftstrrchr(const char *str, int c)
         return (NULL);
 }
 
-int     ftstrncmp(const char *str1, const char *str2, size_t num)
+int ftstrncmp(const char *str1, const char *str2, size_t num)
 {
-        size_t  i;
+        size_t i;
 
         i = 0;
         while (i < num)
@@ -122,45 +122,42 @@ int     ftstrncmp(const char *str1, const char *str2, size_t num)
         return (0);
 }
 
-int main() {
-    char str1[] = "acbcde";
-    char str2[] = "abcdef";
-    int resultado;
+void    *ftmemchr(const void *str, int ch, size_t num)
+{
+        unsigned char   *ptr;
 
-    // Comparando as duas strings inteiras
-    printf("=============ORIGINAL==================\n");
-    resultado = strncmp(str1, str2, 7); // O tamanho máximo é irrelevante aqui
-    if (resultado == 0) {
-        printf("As strings são iguais: %d.\n", resultado);
-    } else {
-        printf("As strings são diferentes: %d.\n", resultado);
-    }
+        ptr = (unsigned char *)str;
+        while (num--)
+                if (*ptr++ == (unsigned char)ch)
+                        return ((void *)ptr - 1);
+        return (NULL);
+}
 
-    // Comparando apenas os primeiros 5 caracteres
-    resultado = strncmp(str1, str2, 5);
-    if (resultado == 0) {
-        printf("Os primeiros 5 caracteres são iguais: %d.\n", resultado);
-    } else {
-        printf("Os primeiros 5 caracteres são diferentes: %d.\n", resultado);
-    }
+int main()
+{
+        char str[] = "mOlá, mundo!";
+        void *ptr;
+        int numeros2[] = {1, 2, 3, 42, 5};
+        void *ptr2;
 
+        
+        ptr2 = ftmemchr(numeros2, 42, sizeof(numeros2));
+        ptr = ftmemchr(str, 'n', 10);
 
-    printf("=============CUSTOM==================\n");
-    // Comparando as duas strings inteiras
-    resultado = ftstrncmp(str1, str2, 7); // O tamanho máximo é irrelevante aqui
-    if (resultado == 0) {
-        printf("As strings são iguais: %d.\n", resultado);
-    } else {
-        printf("As strings são diferentes: %d.\n", resultado);
-    }
+        if (ptr != NULL)
+        {
+                printf("O caractere 'm' foi encontrado em: %s\n", (char *)ptr);
+        }
+        else
+        {
+                printf("O caractere 'm' não foi encontrado nos primeiros 10 bytes.\n");
+        }
 
-    // Comparando apenas os primeiros 5 caracteres
-    resultado = ftstrncmp(str1, str2, 5);
-    if (resultado == 0) {
-        printf("Os primeiros 5 caracteres são iguais: %d.\n", resultado);
-    } else {
-        printf("Os primeiros 5 caracteres são diferentes: %d.\n", resultado);
-    }
+        if (ptr2 != NULL) {
+                printf("O valor 42 foi encontrado na posição: %ld\n", (char*)ptr2 - (char*)numeros2);
+        } else {
+                printf("O valor 42 não foi encontrado.\n");
+        }
 
-    return 0;
+        return 0;
 }
