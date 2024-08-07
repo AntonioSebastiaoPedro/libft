@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <string.h>
+#include <unistd.h>
+#include<stdlib.h>
 #include "../libft.h"
 
 void *memset(void *first, int value, size_t num)
@@ -173,45 +175,48 @@ char    *ftstrnstr(const char *str1, const char *str2, size_t num)
         return (NULL);
 }
 
+int     ftatoi(const char *str)
+{
+        int     i;
+        int     num;
+        int     signal;
+
+        signal = 1;
+        num = 0;
+        i = 0;
+        while (str[i] == 32 || str[i] >= 9 && str[i] <= 13)
+                i++;
+        if (str[i] == '-')
+                signal = -1;
+        if (str[i] == '-' || str[i] == '+')
+                i++;
+        while (ft_isdigit(str[i]))
+        {
+                num = num * 10 + str[i] - '0';
+                i++;
+        }
+        return (num * signal);
+}
+
 int main() {
-        char str[] = "Olá, mundo! Este é um exemplo.";
-        char substr[] = " Este";
+    char str1[] = " \n \t \f \v \r   -553 6363";
+    char str2[] = "-b456abc";
+    int num1;
+    int num2;
+    
+    num1 = atoi(str1);
+    num2 = atoi(str2);
 
-        // Encontrar "mundo" em str, pesquisando no máximo 15 caracteres
-        char *ptr1 = ft_strnstr(str, substr, 20);
-        if (ptr1 != NULL) {
-        printf("A substring foi encontrada em: %s\n", ptr1);
-        } else {
-        printf("A substring não foi encontrada.\n");
-        }
-
-        // Procurar "exemplo" começando da posição 10, pesquisando no máximo 10 caracteres
-        ptr1 = ft_strnstr(str + 10, "exemplo", 21);
-        if (ptr1 != NULL) {
-        printf("A substring foi encontrada em: %s\n", ptr1);
-        } else {
-        printf("A substring não foi encontrada.\n");
-        }
+    printf("str1 convertido para inteiro: %d\n", num1);
+    printf("str2 convertido para inteiro: %d\n", num2);
 
 
+    printf("\n========================CUSTOM======================\n");
+    num1 = ftatoi(str1);
+    num2 = ftatoi(str2);
 
-        printf("\n===================CUSTOM=======================\n");
-        char str2[] = "Olá, mundo! Este é um exemplo.";
-        char substr2[] = " Este";
-        char *ptr2 = ftstrnstr(str2, substr2, 20);
+    printf("str1 convertido para inteiro: %d\n", num1);
+    printf("str2 convertido para inteiro: %d\n", num2);
 
-        if (ptr2 != NULL) {
-        printf("A substring foi encontrada em: %s\n", ptr2);
-        } else {
-        printf("A substring não foi encontrada.\n");
-        }
-
-        ptr2 = ftstrnstr(str + 10, "exemplo", 21);
-        if (ptr2 != NULL) {
-        printf("A substring foi encontrada em: %s\n", ptr2);
-        } else {
-        printf("A substring não foi encontrada.\n");
-        }
-
-        return 0;
+    return 0;
 }
