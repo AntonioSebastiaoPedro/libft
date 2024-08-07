@@ -175,48 +175,51 @@ char    *ftstrnstr(const char *str1, const char *str2, size_t num)
         return (NULL);
 }
 
-int     ftatoi(const char *str)
+void    *ftcalloc(size_t num, size_t size)
 {
-        int     i;
-        int     num;
-        int     signal;
+        void    *ptr;
 
-        signal = 1;
-        num = 0;
-        i = 0;
-        while (str[i] == 32 || str[i] >= 9 && str[i] <= 13)
-                i++;
-        if (str[i] == '-')
-                signal = -1;
-        if (str[i] == '-' || str[i] == '+')
-                i++;
-        while (ft_isdigit(str[i]))
-        {
-                num = num * 10 + str[i] - '0';
-                i++;
-        }
-        return (num * signal);
+        ptr = malloc(num * size);
+        if (!ptr)
+                return (NULL);
+        ft_memset(ptr, 0, num * size);
+        return (ptr);
 }
 
-int main() {
-    char str1[] = " \n \t \f \v \r   -553 6363";
-    char str2[] = "-b456abc";
-    int num1;
-    int num2;
-    
-    num1 = atoi(str1);
-    num2 = atoi(str2);
+int main()
+{
+        int *ptr, *ptr2;
+        int n = 10;
 
-    printf("str1 convertido para inteiro: %d\n", num1);
-    printf("str2 convertido para inteiro: %d\n", num2);
+        // Alocar memória para um array de 10 inteiros
+        ptr = malloc(n * sizeof(int));
 
+        ptr2 = ftcalloc(n, sizeof(int));
 
-    printf("\n========================CUSTOM======================\n");
-    num1 = ftatoi(str1);
-    num2 = ftatoi(str2);
+        if (ptr == NULL) {
+                printf("Alocação de memória falhou\n");
+                return 1;
+        }
 
-    printf("str1 convertido para inteiro: %d\n", num1);
-    printf("str2 convertido para inteiro: %d\n", num2);
+        // Usar o ponteiro para acessar os elementos do array
+        for (int i = 0; i < n; i++) {
+                printf("%d\n", ptr[i]);
+        }
+        free(ptr);
 
-    return 0;
+        printf("==================CUSTOM==================\n");
+        if (ptr2 == NULL) {
+                printf("Alocação de memória falhou\n");
+                return 1;
+        }
+
+        // Usar o ponteiro para acessar os elementos do array
+        for (int i = 0; i < n; i++) {
+                printf("%d\n", ptr2[i]);
+        }
+
+        // Liberar a memória
+        free(ptr2);
+
+        return 0;
 }
