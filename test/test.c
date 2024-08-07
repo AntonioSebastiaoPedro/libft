@@ -133,30 +133,43 @@ void    *ftmemchr(const void *str, int ch, size_t num)
         return (NULL);
 }
 
-int main()
+int     ftmemcmp(const void *ptr1, const void *ptr2, size_t num)
 {
-        char str[] = "mOlá, mundo!";
-        void *ptr;
-        int numeros2[] = {1, 2, 3, 42, 5};
-        void *ptr2;
+        size_t  i;
+        unsigned char *str1;
+        unsigned char *str2;
 
-        
-        ptr2 = ftmemchr(numeros2, 42, sizeof(numeros2));
-        ptr = ftmemchr(str, 'n', 10);
-
-        if (ptr != NULL)
+        str1 = (unsigned char *)ptr1;
+        str2 = (unsigned char *)ptr2;
+        i = 0;
+        while (i < num)
         {
-                printf("O caractere 'm' foi encontrado em: %s\n", (char *)ptr);
+                if (str1[i] != str2[i])
+                        return (str1[i] - str2[i]);
+                i++;
         }
-        else
-        {
-                printf("O caractere 'm' não foi encontrado nos primeiros 10 bytes.\n");
-        }
+        return (0);
+}
 
-        if (ptr2 != NULL) {
-                printf("O valor 42 foi encontrado na posição: %ld\n", (char*)ptr2 - (char*)numeros2);
+int main() {
+        int str1[] = {1, 2, 3, 5, 6};
+        int str2[] = {1, 2, 4, 5, 6};
+        char str3[] = "Olá, mundo!";
+        char str4[] = "Olá, mundo";
+
+        int n = 12;
+        int resultado1 = memcmp(str3, str4, n);
+        if (resultado1 == 0) {
+        printf("Os primeiros %d bytes são iguais.\n", n);
         } else {
-                printf("O valor 42 não foi encontrado.\n");
+        printf("Os primeiros %d bytes são diferentes.\n", n);
+        }
+        printf("===================CUSTOM================\n");
+        int resultado2 = ftmemcmp(str3, str4, n);
+        if (resultado2 == 0) {
+        printf("Os primeiros %d bytes são iguais.\n", n);
+        } else {
+        printf("Os primeiros %d bytes são diferentes.\n", n);
         }
 
         return 0;
