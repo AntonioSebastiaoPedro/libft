@@ -151,25 +151,66 @@ int     ftmemcmp(const void *ptr1, const void *ptr2, size_t num)
         return (0);
 }
 
-int main() {
-        int str1[] = {1, 2, 3, 5, 6};
-        int str2[] = {1, 2, 4, 5, 6};
-        char str3[] = "Olá, mundo!";
-        char str4[] = "Olá, mundo";
+char    *ftstrnstr(const char *str1, const char *str2, size_t num)
+{
+        size_t  i;
+        size_t  len_sub;
 
-        int n = 12;
-        int resultado1 = memcmp(str3, str4, n);
-        if (resultado1 == 0) {
-        printf("Os primeiros %d bytes são iguais.\n", n);
-        } else {
-        printf("Os primeiros %d bytes são diferentes.\n", n);
+        len_sub = strlen(str2);
+        i = 0;
+        if (len_sub == 0)
+                return ((unsigned char *)str1);
+        while (i < num && str1[i])
+        {
+                if (str1[i] == str2[0])
+                {
+                        if ((num - i) >= len_sub)
+                                if (ftstrncmp(str2, str1 + i, len_sub) == 0)
+                                        return ((unsigned char *)&str1[i]);
+                }
+                i++;
         }
-        printf("===================CUSTOM================\n");
-        int resultado2 = ftmemcmp(str3, str4, n);
-        if (resultado2 == 0) {
-        printf("Os primeiros %d bytes são iguais.\n", n);
+        return (NULL);
+}
+
+int main() {
+        char str[] = "Olá, mundo! Este é um exemplo.";
+        char substr[] = " Este";
+
+        // Encontrar "mundo" em str, pesquisando no máximo 15 caracteres
+        char *ptr1 = ft_strnstr(str, substr, 20);
+        if (ptr1 != NULL) {
+        printf("A substring foi encontrada em: %s\n", ptr1);
         } else {
-        printf("Os primeiros %d bytes são diferentes.\n", n);
+        printf("A substring não foi encontrada.\n");
+        }
+
+        // Procurar "exemplo" começando da posição 10, pesquisando no máximo 10 caracteres
+        ptr1 = ft_strnstr(str + 10, "exemplo", 21);
+        if (ptr1 != NULL) {
+        printf("A substring foi encontrada em: %s\n", ptr1);
+        } else {
+        printf("A substring não foi encontrada.\n");
+        }
+
+
+
+        printf("\n===================CUSTOM=======================\n");
+        char str2[] = "Olá, mundo! Este é um exemplo.";
+        char substr2[] = " Este";
+        char *ptr2 = ftstrnstr(str2, substr2, 20);
+
+        if (ptr2 != NULL) {
+        printf("A substring foi encontrada em: %s\n", ptr2);
+        } else {
+        printf("A substring não foi encontrada.\n");
+        }
+
+        ptr2 = ftstrnstr(str + 10, "exemplo", 21);
+        if (ptr2 != NULL) {
+        printf("A substring foi encontrada em: %s\n", ptr2);
+        } else {
+        printf("A substring não foi encontrada.\n");
         }
 
         return 0;
