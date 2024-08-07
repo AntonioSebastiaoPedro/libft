@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
-#include<stdlib.h>
+#include <stdlib.h>
 #include "../libft.h"
 
 void *memset(void *first, int value, size_t num)
@@ -19,7 +19,7 @@ void bzero(void *first2, size_t num2)
         memset(first2, '\0', num2);
 }
 
-void *ft_memcpy(void *dest, const void *src, size_t num)
+void *ftmemcpy(void *dest, const void *src, size_t num)
 {
         unsigned char *d;
         unsigned char *s;
@@ -31,7 +31,7 @@ void *ft_memcpy(void *dest, const void *src, size_t num)
         return (dest);
 }
 
-void *ft_memmove(void *dest, const void *src, size_t num)
+void *ftmemmove(void *dest, const void *src, size_t num)
 {
         unsigned char *s;
         unsigned char *d;
@@ -49,7 +49,7 @@ void *ft_memmove(void *dest, const void *src, size_t num)
         return (dest);
 }
 
-size_t ft_strlcpy(char *dest, const char *src, size_t size)
+size_t ftstrlcpy(char *dest, const char *src, size_t size)
 {
         size_t len;
         size_t i;
@@ -124,9 +124,9 @@ int ftstrncmp(const char *str1, const char *str2, size_t num)
         return (0);
 }
 
-void    *ftmemchr(const void *str, int ch, size_t num)
+void *ftmemchr(const void *str, int ch, size_t num)
 {
-        unsigned char   *ptr;
+        unsigned char *ptr;
 
         ptr = (unsigned char *)str;
         while (num--)
@@ -135,9 +135,9 @@ void    *ftmemchr(const void *str, int ch, size_t num)
         return (NULL);
 }
 
-int     ftmemcmp(const void *ptr1, const void *ptr2, size_t num)
+int ftmemcmp(const void *ptr1, const void *ptr2, size_t num)
 {
-        size_t  i;
+        size_t i;
         unsigned char *str1;
         unsigned char *str2;
 
@@ -153,10 +153,10 @@ int     ftmemcmp(const void *ptr1, const void *ptr2, size_t num)
         return (0);
 }
 
-char    *ftstrnstr(const char *str1, const char *str2, size_t num)
+char *ftstrnstr(const char *str1, const char *str2, size_t num)
 {
-        size_t  i;
-        size_t  len_sub;
+        size_t i;
+        size_t len_sub;
 
         len_sub = strlen(str2);
         i = 0;
@@ -175,9 +175,9 @@ char    *ftstrnstr(const char *str1, const char *str2, size_t num)
         return (NULL);
 }
 
-void    *ftcalloc(size_t num, size_t size)
+void *ftcalloc(size_t num, size_t size)
 {
-        void    *ptr;
+        void *ptr;
 
         ptr = malloc(num * size);
         if (!ptr)
@@ -186,10 +186,10 @@ void    *ftcalloc(size_t num, size_t size)
         return (ptr);
 }
 
-char    *ftstrdup(const char *str)
+char *ftstrdup(const char *str)
 {
         unsigned char *str2;
-        size_t  size;
+        size_t size;
 
         size = ft_strlen(str) + 1;
         str2 = (char *)malloc(size);
@@ -199,44 +199,43 @@ char    *ftstrdup(const char *str)
         return (str2);
 }
 
-
-int main()
+char *ftsubstr(char const *s, unsigned int start, size_t len)
 {
-        char *original = "Hello, world!";
-        char *copia;
+        size_t  s_len;
+        size_t  sub_len;
+        char    *ptr;
 
-        // Duplica a string original
-        copia = strdup(original);
+        s_len = strlen(s);
+        sub_len = start - len + 1;
+        ptr = (char *)ftcalloc(1, sub_len);
+        ftmemcpy(ptr, s + start, sub_len - 1);
+        return (ptr);
+}
 
-        if (copia == NULL) {
+int main() {
+    char str[] = "Hello, world! Ola! Mau";
+    char str2[] = "Hello, world! Ola! Mau";
+    char *sub, *sub2;
+    
+    sub = ft_substr(str, 7, 11);
+
+    if (sub != NULL) {
+        printf("Substring: %s\n", sub);
+        free(sub);
+    } else {
         printf("Erro ao alocar memória.\n");
-        return 1;
-        }
+    }
 
-        printf("Original: %s\n", original);
-        printf("Cópia: %s\n", copia);
+    printf("\n=================CUSTOM================\n");
+    
+    sub2 = ftsubstr(str2, 7, 11);
 
-        // Libera a memória alocada
-        free(copia);
-
-
-        printf("\n===============CUSTOM==============\n");
-        char *original2 = "Hello, world!";
-        char *copia2;
-
-        // Duplica a string original2
-        copia2 = ftstrdup(original2);
-
-        if (copia2 == NULL) {
+    if (sub2 != NULL) {
+        printf("Substring: %s\n", sub2);
+        free(sub2);
+    } else {
         printf("Erro ao alocar memória.\n");
-        return 1;
-        }
+    }
 
-        printf("Original2: %s\n", original2);
-        printf("Cópia: %s\n", copia2);
-
-        // Libera a memória alocada
-        free(copia2);
-
-        return 0;
+    return 0;
 }
