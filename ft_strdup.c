@@ -6,21 +6,21 @@
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 11:31:04 by ansebast          #+#    #+#             */
-/*   Updated: 2024/05/29 11:31:06 by ansebast         ###   ########.fr       */
+/*   Updated: 2024/08/07 13:10:48 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(const char *s)
+char    *ft_strdup(const char *str)
 {
-	size_t	len;
-	char	*dup;
+        unsigned char *str2;
+        size_t  size;
 
-	len = ft_strlen(s) + 1;
-	dup = (char *)malloc(len);
-	if (dup == NULL)
-		return (NULL);
-	ft_memcpy(dup, s, len);
-	return (dup);
+        size = ft_strlen(str) + 1;
+        str2 = (char *)malloc(size);
+        if (!str2)
+                return (NULL);
+        ft_memcpy(str2, str, size);
+        return (str2);
 }

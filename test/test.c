@@ -186,40 +186,57 @@ void    *ftcalloc(size_t num, size_t size)
         return (ptr);
 }
 
+char    *ftstrdup(const char *str)
+{
+        unsigned char *str2;
+        size_t  size;
+
+        size = ft_strlen(str) + 1;
+        str2 = (char *)malloc(size);
+        if (!str2)
+                return (NULL);
+        ft_memcpy(str2, str, size);
+        return (str2);
+}
+
+
 int main()
 {
-        int *ptr, *ptr2;
-        int n = 10;
+        char *original = "Hello, world!";
+        char *copia;
 
-        // Alocar memória para um array de 10 inteiros
-        ptr = malloc(n * sizeof(int));
+        // Duplica a string original
+        copia = strdup(original);
 
-        ptr2 = ftcalloc(n, sizeof(int));
-
-        if (ptr == NULL) {
-                printf("Alocação de memória falhou\n");
-                return 1;
+        if (copia == NULL) {
+        printf("Erro ao alocar memória.\n");
+        return 1;
         }
 
-        // Usar o ponteiro para acessar os elementos do array
-        for (int i = 0; i < n; i++) {
-                printf("%d\n", ptr[i]);
-        }
-        free(ptr);
+        printf("Original: %s\n", original);
+        printf("Cópia: %s\n", copia);
 
-        printf("==================CUSTOM==================\n");
-        if (ptr2 == NULL) {
-                printf("Alocação de memória falhou\n");
-                return 1;
+        // Libera a memória alocada
+        free(copia);
+
+
+        printf("\n===============CUSTOM==============\n");
+        char *original2 = "Hello, world!";
+        char *copia2;
+
+        // Duplica a string original2
+        copia2 = ftstrdup(original2);
+
+        if (copia2 == NULL) {
+        printf("Erro ao alocar memória.\n");
+        return 1;
         }
 
-        // Usar o ponteiro para acessar os elementos do array
-        for (int i = 0; i < n; i++) {
-                printf("%d\n", ptr2[i]);
-        }
+        printf("Original2: %s\n", original2);
+        printf("Cópia: %s\n", copia2);
 
-        // Liberar a memória
-        free(ptr2);
+        // Libera a memória alocada
+        free(copia2);
 
         return 0;
 }
