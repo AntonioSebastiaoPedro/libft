@@ -6,7 +6,7 @@
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 11:32:18 by ansebast          #+#    #+#             */
-/*   Updated: 2024/08/10 09:37:15 by ansebast         ###   ########.fr       */
+/*   Updated: 2024/08/10 09:45:59 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		return (ft_strdup(""));
 	if (len > s_len - start)
 		len = s_len - start;
-	ptr = (char *)ft_calloc(1, len + 1);
+	ptr = (char *)ft_calloc(len + 1, 1);
 	if (!ptr)
 		return (NULL);
 	ft_memcpy(ptr, s + start, len);
