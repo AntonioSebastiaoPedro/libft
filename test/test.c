@@ -219,21 +219,35 @@ char *ftsubstr(char const *s, unsigned int start, size_t len)
     return (ptr);
 }
 
-int main() {
-    char str[] = "Hello, world! Ola! Mau";
-    char str2[] = "Hello, world! Ola! Mau";
-    char *sub, *sub2;
+char    *ftstrjoin(char const *s1, char const *s2)
+{
+        char    *new_str;
+        size_t  len1;
+        size_t  len2;
+        size_t total_len;
 
-    printf("\n=================CUSTOM================\n\n");
-    
-    sub2 = ftsubstr(str2, 3, 30);
+        if (!s1 || !s2)
+                return (NULL);
+        len1 = ft_strlen(s1);
+        len2 = ft_strlen(s2);
+        total_len = len1 + len2 + 1;
+        new_str = (char *)calloc(total_len, sizeof(char));
+        if (!new_str)
+                return (NULL);
+        ft_strlcpy(new_str, s1, total_len);
+        ft_strlcat(new_str, s2, total_len);
+        return (new_str);
+}
 
-    if (sub2 != NULL) {
-        printf("Substring: %s\n", sub2);
-        free(sub2);
-    } else {
-        printf("Erro ao alocar memória.\n");
-    }
-
+int main(void)
+{
+    char *s1 = "\0";
+    char *s2 = "Teste 2";
+    char *joined = ft_strjoin(s1, s2);
+    printf("Joined string: %s\n", joined);
+    printf("\n===============CUSTOM==============\n\n");
+    joined = ftstrjoin(s1, s2);
+    printf("Joined string: %s\n", joined);
+    free(joined);
     return 0;
 }

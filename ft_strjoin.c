@@ -6,32 +6,28 @@
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 11:31:24 by ansebast          #+#    #+#             */
-/*   Updated: 2024/05/29 11:31:25 by ansebast         ###   ########.fr       */
+/*   Updated: 2024/08/10 10:24:12 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char    *ftstrjoin(char const *s1, char const *s2)
 {
-	size_t	len_s1;
-	size_t	len_s2;
-	size_t	i;
-	char	*result;
+        char    *new_str;
+        size_t  len1;
+        size_t  len2;
+        size_t	total_len;
 
-	if (s1 == NULL || s2 == NULL)
-		return (NULL);
-	len_s1 = ft_strlen(s1);
-	len_s2 = ft_strlen(s2);
-	result = (char *)malloc(len_s1 + len_s2 + 1);
-	if (result == NULL)
-		return (NULL);
-	i = -1;
-	while (++i < len_s1 && s1[i] != '\0')
-		result[i] = s1[i];
-	i = -1;
-	while (++i < len_s2 && s2[i] != '\0')
-		result[len_s1 + i] = s2[i];
-	result[len_s1 + i] = '\0';
-	return (result);
+        if (!s1 || !s2)
+                return (NULL);
+        len1 = ft_strlen(s1);
+        len2 = ft_strlen(s2);
+        total_len = len1 + len2 + 1;
+        new_str = (char *)calloc(total_len, sizeof(char));
+        if (!new_str)
+                return (NULL);
+        ft_strlcpy(new_str, s1, total_len);
+        ft_strlcat(new_str, s2, total_len);
+        return (new_str);
 }
