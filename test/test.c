@@ -239,15 +239,41 @@ char    *ftstrjoin(char const *s1, char const *s2)
         return (new_str);
 }
 
-int main(void)
+int	ft_isinset(char c, char const *set)
 {
-    char *s1 = "\0";
-    char *s2 = "Teste 2";
-    char *joined = ft_strjoin(s1, s2);
-    printf("Joined string: %s\n", joined);
-    printf("\n===============CUSTOM==============\n\n");
-    joined = ftstrjoin(s1, s2);
-    printf("Joined string: %s\n", joined);
-    free(joined);
+	while (*set)
+		if (*set++ == c)
+			return 1;
+	return 0;
+}
+
+char	*ftstrtrim(char const *s, char const *set)
+{
+	size_t	start, end, len;
+	char	*trim;
+
+	if (!s || !set)
+		return NULL;
+	start = 0;
+	while (s[start] && ft_isinset(s[start], set))
+		start++;
+	end = ft_strlen(s) - 1;
+	while (end > start && ft_isinset(s[end], set))
+		end--;
+	len = end - start + 1;
+	trim = (char *)ft_calloc(len + 1, sizeof(char));
+	if (!trim)
+		return NULL;
+	ft_strlcpy(trim, s + start, len + 1);
+	return trim;
+}
+
+
+
+int main(void) {
+    char *str = "            Hello, world!                    ";
+    char *trimmed = ftstrtrim(str, " ");
+    printf("Trimmed string: %s\n Size: %zu", trimmed, ft_strlen(trimmed));
+    free(trimmed);
     return 0;
 }
