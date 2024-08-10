@@ -211,7 +211,7 @@ char *ftsubstr(char const *s, unsigned int start, size_t len)
         return (strdup(""));
     if (len > s_len - start)
         len = s_len - start;
-    ptr = (char *)calloc(1, len + 1);
+    ptr = (char *)calloc(len + 1, 1);
     if (!ptr)
         return (NULL);
     ftmemcpy(ptr, s + start, len);
@@ -223,15 +223,6 @@ int main() {
     char str[] = "Hello, world! Ola! Mau";
     char str2[] = "Hello, world! Ola! Mau";
     char *sub, *sub2;
-    
-    sub = ft_substr(str, 3, 30);
-
-    if (sub != NULL) {
-        printf("Substring: %s\n", sub);
-        free(sub);
-    } else {
-        printf("Erro ao alocar memória.\n");
-    }
 
     printf("\n=================CUSTOM================\n\n");
     
