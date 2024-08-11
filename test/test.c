@@ -206,7 +206,7 @@ char *ftsubstr(char const *s, unsigned int start, size_t len)
 
     if (!s)
         return (NULL);
-    s_len = strlen(s);
+    s_len = ft_strlen(s + 1);
     if (start >= s_len)
         return (strdup(""));
     if (len > s_len - start)
@@ -267,13 +267,79 @@ char	*ftstrtrim(char const *s, char const *set)
 	ft_strlcpy(trim, s + start, len + 1);
 	return trim;
 }
+#include <stdlib.h>
 
+static int	wdlen(char const *s, char c)
+{
+	int	count;
 
+	count = 0;
+	while (*s)
+	{
+		if (*s != c && (*(s + 1) == c || *(s + 1) == '\0'))
+			count++;
+		s++;
+	}
+	return (count);
+}
 
-int main(void) {
-    char *str = "            Hello, world!                    ";
-    char *trimmed = ftstrtrim(str, " ");
-    printf("Trimmed string: %s\n Size: %zu", trimmed, ft_strlen(trimmed));
-    free(trimmed);
+static char	*ft_get_word(char const *s, int *i, char c)
+{
+	int	word_len;
+	char	*word;
+
+	word_len = 0;
+	while (s[*i + word_len] && s[*i + word_len] != c)
+		word_len++;
+	word = ft_substr(s, *i, word_len);
+	*i += word_len;
+	return (word);
+}
+
+static void     freearray(char **array, int pos)
+{
+        while (pos > 0)
+                free(array[--pos]);
+        free(array);
+}
+
+char	**ftsplit(char const *s, char c)
+{
+	char	**tab;
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	if (!s || !(tab = (char **)malloc((wdlen(s, c) + 1) * sizeof(char *))))
+		return (NULL);
+	while (s[i])
+	{
+		if (s[i] != c)
+		{
+			tab[j] = ft_get_word(s, &i, c);
+			if (!tab[j++])
+			{
+				freearray(tab, j);
+				return (NULL);
+			}
+		}
+		else
+			i++;
+	}
+	tab[j] = NULL;
+	return (tab);
+}
+
+int main(void)
+{
+    char **result;
+    char *str = "Hello world this is a test";
+    result = ftsplit(str, ' ');
+    for (int i = 0; result[i]; i++) {
+        printf("Word %d: %s\n", i, result[i]);
+        free(result[i]);
+    }
+    free(result);
     return 0;
 }
