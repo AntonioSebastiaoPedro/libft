@@ -267,9 +267,8 @@ char	*ftstrtrim(char const *s, char const *set)
 	ft_strlcpy(trim, s + start, len + 1);
 	return trim;
 }
-#include <stdlib.h>
 
-static int	wdlen(char const *s, char c)
+static int	ft_wdlen(char const *s, char c)
 {
 	int	count;
 
@@ -311,7 +310,7 @@ char	**ftsplit(char const *s, char c)
 
 	i = 0;
 	j = 0;
-	if (!s || !(tab = (char **)malloc((wdlen(s, c) + 1) * sizeof(char *))))
+	if (!s || !(tab = (char **)malloc((ft_wdlen(s, c) + 1) * sizeof(char *))))
 		return (NULL);
 	while (s[i])
 	{
