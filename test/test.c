@@ -369,10 +369,26 @@ char    *ftitoa(int nbr)
         return (number);
 }
 
-int main(void)
+char    *ftstrmapi(char const *s, char (*f)(unsigned int, char))
 {
-    int n = -1234567;
-    char *nbr = ftitoa(n);
-    printf("%d", n);
-    return (0);
+        size_t len;
+        size_t     i;
+        char *str;
+
+        len = ft_strlen(s);
+        str = (char *)ft_calloc(len + 1, sizeof(char));
+        i = 0;
+        while (/* condition */)
+        {
+                /* code */
+        }
+        
+}
+
+
+int main() {
+    char *str = ft_strtrim("    Hello   ", "ll");
+    printf("%s", str);
+
+    return 0;
 }
