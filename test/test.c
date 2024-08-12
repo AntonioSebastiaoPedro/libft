@@ -330,15 +330,49 @@ char	**ftsplit(char const *s, char c)
 	return (tab);
 }
 
+static int      ft_countnbr(int nbr)
+{
+        int     count;
+
+        count = 0;
+        while (nbr)
+        {
+                nbr /= 10;
+                count++;
+        }
+        return (count);
+}
+
+static 
+
+char    *ftitoa(int nbr)
+{
+        char    *number;
+        int             count;
+
+        count = ft_countnbr(nbr);
+        number = (char *)ft_calloc(count + 1, sizeof(char));
+        if (nbr == 0)
+                return ("0");
+        if (nbr < 0)
+        {
+                count++;
+                nbr *= -1;
+                number[0] = '-';
+                number[count] = '\0';
+        }
+        while (nbr != 0)
+        {
+                number[--count] = nbr % 10 + '0';
+                nbr /= 10;
+        }
+        return (number);
+}
+
 int main(void)
 {
-    char **result;
-    char *str = "Hello world this is a test";
-    result = ftsplit(str, ' ');
-    for (int i = 0; result[i]; i++) {
-        printf("Word %d: %s\n", i, result[i]);
-        free(result[i]);
-    }
-    free(result);
-    return 0;
+    int n = -1234567;
+    char *nbr = ftitoa(n);
+    printf("%d", n);
+    return (0);
 }
