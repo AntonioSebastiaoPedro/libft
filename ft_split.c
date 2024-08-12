@@ -6,7 +6,7 @@
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 11:30:48 by ansebast          #+#    #+#             */
-/*   Updated: 2024/08/12 07:29:51 by ansebast         ###   ########.fr       */
+/*   Updated: 2024/08/12 09:15:56 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,14 @@ static char	*ft_get_word(char const *s, int *i, char c)
 	return (word);
 }
 
-static void     freearray(char **array, int pos)
+static void     ft_freearray(char **array, int pos)
 {
         while (pos > 0)
                 free(array[--pos]);
         free(array);
 }
 
-char	**ftsplit(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
 	char	**tab;
 	int		i;
@@ -63,7 +63,7 @@ char	**ftsplit(char const *s, char c)
 			tab[j] = ft_get_word(s, &i, c);
 			if (!tab[j++])
 			{
-				freearray(tab, j);
+				ft_freearray(tab, j);
 				return (NULL);
 			}
 		}
