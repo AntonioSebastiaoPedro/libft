@@ -464,16 +464,29 @@ t_list  *ftlstnew(void *content)
         return (node);
 }
 
+void    ftlstadd_front(t_list **lst, t_list *new)
+{
+	if (lst && new)
+	{
+		new->next = *lst;
+		*lst = new;
+	}
+}
+
 
 int main()
 {
-        t_list      *new;
-        char        *str = "Hello, word!";
+    t_list *list = NULL;
+    t_list *new1 = ft_lstnew("Primeiro nó");
+    t_list *new2 = ft_lstnew("Segundo nó");
 
-        new = ft_lstnew(str);
-        if (!new)
-                printf("Error");
-        printf("Content: %s\n", (char *)new->content);
-        free(new);
-        return (0);
+    ftlstadd_front(&list, new2);
+    ftlstadd_front(&list, new1);
+
+    while (list) {
+        printf("%s\n", (char *)list->content);
+        list = list->next;
+    }
+
+    return 0;
 }

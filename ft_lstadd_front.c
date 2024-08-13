@@ -6,13 +6,13 @@
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 11:28:49 by ansebast          #+#    #+#             */
-/*   Updated: 2024/08/03 06:26:14 by ansebast         ###   ########.fr       */
+/*   Updated: 2024/08/13 17:54:08 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd_front(t_list **lst, t_list *new)
+void    ft_lstadd_front(t_list **lst, t_list *new)
 {
 	if (lst && new)
 	{
