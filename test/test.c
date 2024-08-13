@@ -2,6 +2,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <fcntl.h>
 #include "../libft.h"
 
 void *memset(void *first, int value, size_t num)
@@ -415,8 +416,18 @@ void    ftputchar_fd(char c, int fd)
         write(fd, &c, 1);
 }
 
+void    ftputstr_fd(char *s, int fd)
+{
+        if (!s || !fd)
+                return;
+        while (*s != '\0')
+                write(fd, s++, 1);
+        
+}
+
 int main(void) {
-    char str = 'c';
-    ftputchar_fd(str, 1);
+    char *str = "Hello, Word!\n";
+    int fd = open("teste.txt", O_WRONLY | O_CREAT | O_APPEND);
+    ftputstr_fd(str, fd);
     return 0;
 }

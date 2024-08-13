@@ -6,27 +6,17 @@
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 11:30:25 by ansebast          #+#    #+#             */
-/*   Updated: 2024/05/29 11:30:29 by ansebast         ###   ########.fr       */
+/*   Updated: 2024/08/13 12:30:21 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstr_fd(char *s, int fd)
+void    ft_putstr_fd(char *s, int fd)
 {
-	int		i;
-	char	a;
-
-	i = 0;
-	a = ' ';
-	if (s == 0)
-		write(fd, &a, 1);
-	else
-	{
-		while (s[i])
-		{
-			write(fd, &s[i], 1);
-			i++;
-		}
-	}
+        if (!s || !fd)
+                return;
+        while (*s != '\0')
+                write(fd, s++, 1);
+        
 }
