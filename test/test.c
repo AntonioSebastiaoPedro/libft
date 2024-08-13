@@ -410,8 +410,13 @@ void print_index(unsigned int i, char *c) {
     printf("Index %u: %c\n", i, *c);
 }
 
+void    ftputchar_fd(char c, int fd)
+{
+        write(fd, &c, 1);
+}
+
 int main(void) {
-    char str[] = "Exm";
-    ftstriteri(str, print_index);
+    char str = 'c';
+    ftputchar_fd(str, 1);
     return 0;
 }
