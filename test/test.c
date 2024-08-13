@@ -425,9 +425,15 @@ void    ftputstr_fd(char *s, int fd)
         
 }
 
+void    ftputendl_fd(char *s, int fd)
+{
+        ft_putstr_fd(s, fd);
+        write(fd, "\n", 1);
+}
+
 int main(void) {
-    char *str = "Hello, Word!\n";
-    int fd = open("teste.txt", O_WRONLY | O_CREAT | O_APPEND);
-    ftputstr_fd(str, fd);
+    char *str = "\0";
+    int fd = open("teste.txt", O_WRONLY | O_CREAT | O_TRUNC);
+    ftputendl_fd(str, fd);
     return 0;
 }
