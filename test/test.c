@@ -381,13 +381,13 @@ char    *ftstrmapi(char const *s, char (*f)(unsigned int, char))
         str = (char *)ft_calloc(len + 1, sizeof(char));
         if (!str)
                 return (NULL);
-	str[len] = '\0';
 	i = 0;
         while (s[i] != '\0')
         {
                 str[i] = f(i, s[i]);
                 i++;
         }
+        str[i] = '\0';
         return (str);
 }
 
