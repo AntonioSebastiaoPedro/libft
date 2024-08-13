@@ -6,7 +6,7 @@
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 11:31:16 by ansebast          #+#    #+#             */
-/*   Updated: 2024/05/29 11:31:18 by ansebast         ###   ########.fr       */
+/*   Updated: 2024/08/13 07:54:24 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,14 @@
 
 void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	int		i;
-	char	a;
+        unsigned int    i;
 
-	i = 0;
-	a = ' ';
-	if (s != 0)
-	{
-		while (s[i])
-		{
-			f(i, &s[i]);
-			i++;
-		}
-	}
-	else
-		f(i, &a);
+        if (!s || !f)
+                return;
+        i = 0;
+        while (s[i] != '\0')
+        {
+                f(i, &s[i]);
+                i++;
+        }
 }

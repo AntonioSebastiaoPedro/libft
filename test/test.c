@@ -391,15 +391,27 @@ char    *ftstrmapi(char const *s, char (*f)(unsigned int, char))
         return (str);
 }
 
+void ftstriteri(char *s, void (*f)(unsigned int, char*))
+{
+        unsigned int    i;
 
-char to_upper(unsigned int i, char c) {
-    return (c >= 'a' && c <= 'z') ? c - 32 : c;
+        if (!s || !f)
+                return;
+        i = 0;
+        while (s[i] != '\0')
+        {
+                f(i, &s[i]);
+                i++;
+        }
+}
+
+
+void print_index(unsigned int i, char *c) {
+    printf("Index %u: %c\n", i, *c);
 }
 
 int main(void) {
-    char *str = "helloA";
-    char *new_str = ftstrmapi(str, to_upper);
-    printf("Mapped string: %s\n", new_str);
-    free(new_str);
+    char str[] = "Exm";
+    ftstriteri(str, print_index);
     return 0;
 }
