@@ -371,24 +371,35 @@ char    *ftitoa(int nbr)
 
 char    *ftstrmapi(char const *s, char (*f)(unsigned int, char))
 {
-        size_t len;
-        size_t     i;
-        char *str;
+        size_t	len;
+        unsigned int     i;
+        char			*str;
 
+        if (!s || !f)
+                return (NULL);
         len = ft_strlen(s);
         str = (char *)ft_calloc(len + 1, sizeof(char));
-        i = 0;
-        while (/* condition */)
+        if (!str)
+                return (NULL);
+	str[len] = '\0';
+	i = 0;
+        while (s[i] != '\0')
         {
-                /* code */
+                str[i] = f(i, s[i]);
+                i++;
         }
-        
+        return (str);
 }
 
 
-int main() {
-    char *str = ft_strtrim("    Hello   ", "ll");
-    printf("%s", str);
+char to_upper(unsigned int i, char c) {
+    return (c >= 'a' && c <= 'z') ? c - 32 : c;
+}
 
+int main(void) {
+    char *str = "helloA";
+    char *new_str = ftstrmapi(str, to_upper);
+    printf("Mapped string: %s\n", new_str);
+    free(new_str);
     return 0;
 }
