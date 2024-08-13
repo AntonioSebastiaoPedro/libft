@@ -473,20 +473,30 @@ void    ftlstadd_front(t_list **lst, t_list *new)
 	}
 }
 
+int     ftlstsize(t_list *lst)
+{
+        int     len;
+
+        len = 0;
+        while (lst)
+        {
+                len++;
+                lst = lst->next;
+        }
+        return(len);
+}
+
 
 int main()
 {
-    t_list *list = NULL;
-    t_list *new1 = ft_lstnew("Primeiro nó");
-    t_list *new2 = ft_lstnew("Segundo nó");
+        t_list *list = NULL;
+        t_list *new1 = ft_lstnew("Primeiro nó");
+        t_list *new2 = ft_lstnew("Segundo nó");
+        t_list *new3 = ft_lstnew("Terceiro nó");
 
-    ftlstadd_front(&list, new2);
-    ftlstadd_front(&list, new1);
-
-    while (list) {
-        printf("%s\n", (char *)list->content);
-        list = list->next;
-    }
-
-    return 0;
+        ft_lstadd_front(&list, new3);
+        ft_lstadd_front(&list, new2);
+        ft_lstadd_front(&list, new1);
+        printf("Length: %d", ftlstsize(list));
+        return 0;
 }
