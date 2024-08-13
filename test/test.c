@@ -3,6 +3,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <fcntl.h>
+#include <limits.h>
 #include "../libft.h"
 
 void *memset(void *first, int value, size_t num)
@@ -431,9 +432,33 @@ void    ftputendl_fd(char *s, int fd)
         write(fd, "\n", 1);
 }
 
+void    ftputnbr_fd(int n, int fd)
+{
+        int     sign;
+        char     nbr;
+
+        sign = 1;
+        if (n == -2147483648)
+        {
+                write(fd, "-2147483648", 11);
+                return;        
+        }
+        if (n < 0)
+        {
+                ft_putchar_fd('-', fd);
+                n = -n;
+        }
+        if (n > 9)
+                ftputnbr_fd(n / 10, fd);
+        ft_putchar_fd((n % 10 + '0'), fd);
+}
+
 int main(void) {
-    char *str = "\0";
-    int fd = open("teste.txt", O_WRONLY | O_CREAT | O_TRUNC);
-    ftputendl_fd(str, fd);
+    int str = 2147483650;
+    int fd = 1;
+    ft_putnbr_fd(str, fd);
     return 0;
 }
+
+//2147483647
+//-2147483648
