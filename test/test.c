@@ -453,12 +453,27 @@ void    ftputnbr_fd(int n, int fd)
         ft_putchar_fd((n % 10 + '0'), fd);
 }
 
-int main(void) {
-    int str = 2147483650;
-    int fd = 1;
-    ft_putnbr_fd(str, fd);
-    return 0;
+t_list  *ftlstnew(void *content)
+{
+        t_list  *node;
+        node = ft_calloc(1, sizeof(t_list));
+        if (!node)
+                return (NULL);
+        node->content = content;
+        node->next = NULL;
+        return (node);
 }
 
-//2147483647
-//-2147483648
+
+int main()
+{
+        t_list      *new;
+        char        *str = "Hello, word!";
+
+        new = ft_lstnew(str);
+        if (!new)
+                printf("Error");
+        printf("Content: %s\n", (char *)new->content);
+        free(new);
+        return (0);
+}
