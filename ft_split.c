@@ -6,7 +6,7 @@
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 11:30:48 by ansebast          #+#    #+#             */
-/*   Updated: 2024/08/12 09:15:56 by ansebast         ###   ########.fr       */
+/*   Updated: 2024/08/14 19:16:26 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	ft_wdlen(char const *s, char c)
 
 static char	*ft_get_word(char const *s, int *i, char c)
 {
-	int	word_len;
+	int		word_len;
 	char	*word;
 
 	word_len = 0;
@@ -39,11 +39,11 @@ static char	*ft_get_word(char const *s, int *i, char c)
 	return (word);
 }
 
-static void     ft_freearray(char **array, int pos)
+static void	ft_freearray(char **array, int pos)
 {
-        while (pos > 0)
-                free(array[--pos]);
-        free(array);
+	while (pos > 0)
+		free(array[--pos]);
+	free(array);
 }
 
 char	**ft_split(char const *s, char c)
@@ -54,7 +54,8 @@ char	**ft_split(char const *s, char c)
 
 	i = 0;
 	j = 0;
-	if (!s || !(tab = (char **)malloc((ft_wdlen(s, c) + 1) * sizeof(char *))))
+	tab = (char **)malloc((ft_wdlen(s, c) + 1) * sizeof(char *));
+	if (!s || !tab)
 		return (NULL);
 	while (s[i])
 	{

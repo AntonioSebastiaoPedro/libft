@@ -6,45 +6,45 @@
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 11:28:38 by ansebast          #+#    #+#             */
-/*   Updated: 2024/08/13 13:25:11 by ansebast         ###   ########.fr       */
+/*   Updated: 2024/08/14 19:02:55 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int      ft_countnbr(int nbr)
+static int	ft_countnbr(int nbr)
 {
-        int     count;
+	int	count;
 
-        count = 0;
-        while (nbr)
-        {
-                nbr /= 10;
-                count++;
-        }
-        return (count);
+	count = 0;
+	while (nbr)
+	{
+		nbr /= 10;
+		count++;
+	}
+	return (count);
 }
 
-char    *ft_itoa(int nbr)
+char	*ft_itoa(int nbr)
 {
-        char    *number;
-        int             count;
+	char	*number;
+	int		count;
 
-        count = ft_countnbr(nbr);
-        number = (char *)ft_calloc(count + 1, sizeof(char));
-        if (nbr == 0)
-                return ("0");
-        if (nbr < 0)
-        {
-                count++;
-                nbr *= -1;
-                number[0] = '-';
-                number[count] = '\0';
-        }
-        while (nbr != 0)
-        {
-                number[--count] = nbr % 10 + '0';
-                nbr /= 10;
-        }
-        return (number);
+	count = ft_countnbr(nbr);
+	number = (char *)ft_calloc(count + 1, sizeof(char));
+	if (nbr == 0)
+		return ("0");
+	if (nbr < 0)
+	{
+		count++;
+		nbr *= -1;
+		number[0] = '-';
+		number[count] = '\0';
+	}
+	while (nbr != 0)
+	{
+		number[--count] = nbr % 10 + '0';
+		nbr /= 10;
+	}
+	return (number);
 }
