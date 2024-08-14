@@ -6,7 +6,7 @@
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 11:31:04 by ansebast          #+#    #+#             */
-/*   Updated: 2024/08/07 13:10:48 by ansebast         ###   ########.fr       */
+/*   Updated: 2024/08/14 14:41:57 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char    *ft_strdup(const char *str)
 {
-        unsigned char *str2;
+        char *str2;
         size_t  size;
 
         size = ft_strlen(str) + 1;

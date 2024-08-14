@@ -6,7 +6,7 @@
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 11:29:56 by ansebast          #+#    #+#             */
-/*   Updated: 2024/08/03 18:23:43 by ansebast         ###   ########.fr       */
+/*   Updated: 2024/08/14 14:40:14 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,6 @@ void	*ft_memmove(void *dest, const void *src, size_t num)
 			*d++ = *s++;
 	else
 		while (num--)
-			d[num] + s[num];
+			d[num] = s[num];
 	return (dest);
 }
