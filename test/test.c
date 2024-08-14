@@ -561,21 +561,64 @@ void    print_content(void *content)
         printf("%s\n", (char *)content);
 }
 
+t_list  *ftlstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
+{
+        t_list  *new_list;
+        t_list  *new_node;
+
+        if (!lst)
+                return (NULL);
+        new_list = NULL;
+        while (lst)
+        {
+                if (!(new_node = ft_lstnew(f(lst->content))))
+                {
+                        ft_lstclear(&new_list, del);
+                        return (NULL);
+                }      
+                ft_lstadd_back(&new_list, new_node);
+                lst = lst->next;
+        }
+        return (new_list);
+}
+
+void *transform_content(void *content)
+{
+    char *str = (char *)content;
+    char *new_str = malloc(strlen(str) + 2); // Adiciona 1 para a nova string e 1 para o caractere nulo
+    if (!new_str)
+        return (NULL);
+    sprintf(new_str, "%s-Updated", str); // Adiciona um '!' ao final da string
+    return (new_str);
+}
+
 int main(void)
 {
-        t_list  *head;
-        t_list  *second;
-        t_list  *third;
+    t_list *head;
+    t_list *second;
+    t_list *third;
+    t_list *new_list;
 
-        // Criando nós da lista
-        head = ft_lstnew("Primeiro");
-        second = ft_lstnew("Segundo");
-        third = ft_lstnew("Terceiro");
+    // Criando nós da lista
+    head = ft_lstnew("Primeiro");
+    second = ft_lstnew("Segundo");
+    third = ft_lstnew("Terceiro");
+    
+    // Encadeando nós
+    head->next = second;
+    second->next = third;
+    third->next = NULL;
 
-        head->next = second;
-        second->next = third;
-        third->next = NULL;
+    // Imprimindo lista original
+    printf("Lista original:\n");
+    print_list(head);
 
-        printf("Lista:\n\n");
-        ft_lstiter(head, print_content);
+    // Aplicando ft_lstmap para criar uma nova lista
+    new_list = ft_lstmap(head, transform_content, del_content);
+
+    // Imprimindo nova lista
+    printf("\nNova lista:\n");
+    print_list(new_list);
+
+    return 0;
 }
