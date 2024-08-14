@@ -505,19 +505,32 @@ void    ftlstadd_back(t_list **lst, t_list *new)
                 *lst = new;
 }
 
+void    ftlstdelone(t_list *lst, void (*del)(void *))
+{
+        if (lst)
+        {
+                if (del)
+                        (del)(lst->content);
+                free(lst);
+        }
+}
+
+
+void    del_content(void *ptr)
+{
+        free(ptr);
+}
 
 int main()
 {
-        t_list *list = NULL;
-        t_list *new1 = ft_lstnew("Primeiro nó");
-        t_list *new2 = ft_lstnew("Segundo nó");
-        t_list *new3 = ft_lstnew("Terceiro nó");
+        t_list  *list = NULL;
+        char *content = (char *)ft_calloc(20, 1);
+        content = "This is a string all";
+        t_list  *new = ft_lstnew(content);
+        ft_lstadd_front(&list, new);
+        printf("Before Content: %s\n", (char *)new->content);
+        ftlstdelone(new, &del_content);
+        free(list);
 
-        // ft_lstadd_front(&list, new3);
-        // ft_lstadd_front(&list, new2);
-        ftlstadd_back(&list, new1);
-        
-        printf("Length: %d\n", ft_lstsize(list));
-        printf("Last Node: %s", (char *)ftlstlast(list)->content);
-        return 0;
+        return(0);
 }

@@ -6,7 +6,7 @@
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 11:29:01 by ansebast          #+#    #+#             */
-/*   Updated: 2024/05/29 11:29:03 by ansebast         ###   ########.fr       */
+/*   Updated: 2024/08/14 09:47:47 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 
 void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {
-	(del)(lst->content);
-	free(lst);
+        if (lst)
+        {
+                if (del)
+                        (del)(lst->content);
+                free(lst);
+        }
 }
