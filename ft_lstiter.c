@@ -6,7 +6,7 @@
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 11:29:07 by ansebast          #+#    #+#             */
-/*   Updated: 2024/05/29 11:29:08 by ansebast         ###   ########.fr       */
+/*   Updated: 2024/08/14 11:46:00 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	if (!lst || !f)
-		return ;
-	while (lst)
-	{
-		f(lst->content);
-		lst = lst->next;
-	}
+        if (!lst || !f)
+                return;
+        while (lst)
+        {
+                f(lst->content);
+                lst = lst->next;
+        }
 }

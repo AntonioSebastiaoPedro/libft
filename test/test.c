@@ -545,6 +545,22 @@ void ftlstclear(t_list **lst, void (*del)(void *))
         }
 }
 
+void    ftlstiter(t_list *lst, void (*f)(void *))
+{
+        if (!lst || !f)
+                return;
+        while (lst)
+        {
+                f(lst->content);
+                lst = lst->next;
+        }
+}
+
+void    print_content(void *content)
+{
+        printf("%s\n", (char *)content);
+}
+
 int main(void)
 {
         t_list  *head;
@@ -560,18 +576,6 @@ int main(void)
         second->next = third;
         third->next = NULL;
 
-        printf("Lista original:\n");
-        print_list(head);
-
-        // Testando ft_lstclear
-        printf("\nLiberando a lista:\n");
-        ft_lstclear(&head, del_content);
-
-        printf("Lista após liberação:\n");
-        if (head == NULL)
-                printf("Lista está vazia.\n");
-        else
-                print_list(head);
-
-        return 0;
+        printf("Lista:\n\n");
+        ft_lstiter(head, print_content);
 }
