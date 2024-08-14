@@ -6,37 +6,47 @@
 #    By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/29 11:32:47 by ansebast          #+#    #+#              #
-#    Updated: 2024/08/14 16:38:55 by ansebast         ###   ########.fr        #
+#    Updated: 2024/08/14 18:39:06 by ansebast         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 NAME = libft.a
-ARCFLAGS = ar -rcs
-CCMD = rm -f
+
+GREEN = \033[0;32m
+RED = \033[0;31m
+YELLOW = \033[0;33m
+CYAN = \033[0;36m
+RESET = \033[0m
+
 SRC = $(filter-out $(BONUS_SRC), $(wildcard ft_*.c))
-OBJS = $(SRC:.c=.o)
 BONUS_SRC = $(wildcard ft_lst*.c)
+OBJS = $(SRC:.c=.o)
 BONUS_OBJS = $(BONUS_SRC:.c=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(ARCFLAGS) $(NAME) $(OBJS)
+	@echo -e "$(CYAN)Creating the library $(NAME)...$(RESET)"
+	ar rcs $(NAME) $(OBJS)
+	@echo -e "$(GREEN)Library $(NAME) successfully created!$(RESET)"
 
-bonus: $(BONUS_OBJS) $(NAME)
-	$(ARCFLAGS) $(NAME) $(BONUS_OBJS)
-	ranlib $(NAME)
+bonus: $(NAME) $(BONUS_OBJS)
+
+$(BONUS_OBJS): %.o: %.c
+	@echo -e "$(YELLOW)Compiling $<...$(RESET)"
+	$(CC) $(CFLAGS) -c $< -o $@
+	@echo -e "$(GREEN)Bonus file compiled successfully!$(RESET)"
 
 clean:
-	$(CCMD) $(OBJS) $(BONUS_OBJS)
+	@echo -e "$(RED)Removendo arquivos objeto...$(RESET)"
+	rm -f $(OBJS) $(BONUS_OBJS)
 
 fclean: clean
-	$(CCMD) $(NAME)
+	@echo -e "$(RED)Removendo a biblioteca $(NAME)...$(RESET)"
+	rm -f $(NAME)
 
 re: fclean all
-
-rebonus: re bonus
 
 .PHONY: all clean fclean re bonus
