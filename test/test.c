@@ -488,11 +488,21 @@ int     ftlstsize(t_list *lst)
 
 t_list  *ftlstlast(t_list *lst)
 {
-        while (lst->next)
-        {
-                lst = lst->next;
-        }
+        if (lst)
+                while (lst->next)
+                        lst = lst->next;
         return (lst);
+}
+
+void    ftlstadd_back(t_list **lst, t_list *new)
+{
+        t_list  *last;
+
+        if (lst)
+                if (last = ftlstlast(*lst))
+                        last->next = new;
+        else
+                *lst = new;
 }
 
 
@@ -503,10 +513,11 @@ int main()
         t_list *new2 = ft_lstnew("Segundo nó");
         t_list *new3 = ft_lstnew("Terceiro nó");
 
-        ft_lstadd_front(&list, new2);
-        ft_lstadd_front(&list, new1);
-        ft_lstadd_front(&list, new3);
-        printf("Length: %d\n", ftlstsize(list));
-        printf("Last Node: %s", (char *)ft_lstlast(list)->content);
+        // ft_lstadd_front(&list, new3);
+        // ft_lstadd_front(&list, new2);
+        ftlstadd_back(&list, new1);
+        
+        printf("Length: %d\n", ft_lstsize(list));
+        printf("Last Node: %s", (char *)ftlstlast(list)->content);
         return 0;
 }

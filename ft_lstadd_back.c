@@ -6,7 +6,7 @@
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 11:28:43 by ansebast          #+#    #+#             */
-/*   Updated: 2024/05/29 11:28:45 by ansebast         ###   ########.fr       */
+/*   Updated: 2024/08/14 08:59:36 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,11 @@
 
 void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	t_list	*t;
+        t_list  *last;
 
-	if (*lst)
-	{
-		t = ft_lstlast(*lst);
-		t->next = new;
-	}
-	else
-		*lst = new;
+        if (lst)
+                if (last = ftlstlast(*lst))
+                        last->next = new;
+        else
+                *lst = new;
 }
