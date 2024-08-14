@@ -503,9 +503,9 @@ int main()
         t_list *new2 = ft_lstnew("Segundo nó");
         t_list *new3 = ft_lstnew("Terceiro nó");
 
-        // ft_lstadd_front(&list, new2);
-        // ft_lstadd_front(&list, new1);
-        // ft_lstadd_front(&list, new3);
+        ft_lstadd_front(&list, new2);
+        ft_lstadd_front(&list, new1);
+        ft_lstadd_front(&list, new3);
         printf("Length: %d\n", ftlstsize(list));
         printf("Last Node: %s", (char *)ft_lstlast(list)->content);
         return 0;
