@@ -515,22 +515,63 @@ void    ftlstdelone(t_list *lst, void (*del)(void *))
         }
 }
 
-
 void    del_content(void *ptr)
 {
         free(ptr);
 }
 
-int main()
+void print_list(t_list *lst)
 {
-        t_list  *list = NULL;
-        char *content = (char *)ft_calloc(20, 1);
-        content = "This is a string all";
-        t_list  *new = ft_lstnew(content);
-        ft_lstadd_front(&list, new);
-        printf("Before Content: %s\n", (char *)new->content);
-        ftlstdelone(new, &del_content);
-        free(list);
+    while (lst)
+    {
+        printf("%s\n", (char *)lst->content);
+        lst = lst->next;
+    }
+}
 
-        return(0);
+void ftlstclear(t_list **lst, void (*del)(void *))
+{       
+        t_list  *temp;
+
+        if (!lst || !*lst || !del)
+                return;
+
+        while (*lst)
+        {
+                temp = (*lst)->next;
+                del((*lst)->content);
+                free(*lst);
+                *lst = temp;
+        }
+}
+
+int main(void)
+{
+        t_list  *head;
+        t_list  *second;
+        t_list  *third;
+
+        // Criando nós da lista
+        head = ft_lstnew("Primeiro");
+        second = ft_lstnew("Segundo");
+        third = ft_lstnew("Terceiro");
+
+        head->next = second;
+        second->next = third;
+        third->next = NULL;
+
+        printf("Lista original:\n");
+        print_list(head);
+
+        // Testando ft_lstclear
+        printf("\nLiberando a lista:\n");
+        ft_lstclear(&head, del_content);
+
+        printf("Lista após liberação:\n");
+        if (head == NULL)
+                printf("Lista está vazia.\n");
+        else
+                print_list(head);
+
+        return 0;
 }
