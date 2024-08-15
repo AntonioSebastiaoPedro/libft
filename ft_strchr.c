@@ -6,7 +6,7 @@
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 11:30:54 by ansebast          #+#    #+#             */
-/*   Updated: 2024/08/14 19:04:43 by ansebast         ###   ########.fr       */
+/*   Updated: 2024/08/15 07:25:38 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,13 @@
 
 char	*ft_strchr(const char *str, int c)
 {
-	while (*str++)
-		if (*str == c)
+	while (*str)
+	{
+                if (*str == (char )c)
 			return ((char *)str);
-	return (NULL);
+                str++;
+        }
+        if ((char )c == '\0')
+                return ((char *)str);
+        return (NULL);
 }
