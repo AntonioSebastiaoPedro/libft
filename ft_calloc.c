@@ -6,7 +6,7 @@
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 11:27:58 by ansebast          #+#    #+#             */
-/*   Updated: 2024/08/14 19:01:31 by ansebast         ###   ########.fr       */
+/*   Updated: 2024/08/15 08:48:32 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	*ft_calloc(size_t num, size_t size)
 {
 	void	*ptr;
 
+	if (size && num > 21474836647 / size)
+		return (NULL);
 	ptr = malloc(num * size);
 	if (!ptr)
 		return (NULL);
