@@ -6,7 +6,7 @@
 #    By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/29 11:32:47 by ansebast          #+#    #+#              #
-#    Updated: 2024/08/15 09:17:16 by ansebast         ###   ########.fr        #
+#    Updated: 2024/08/15 13:27:42 by ansebast         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,23 +32,25 @@ $(NAME): $(OBJS)
 	ar rcs $(NAME) $(OBJS)
 	@echo "$(GREEN)Library $(NAME) successfully created!$(RESET)"
 
-bonus: $(NAME) $(BONUS_OBJS)
-
+bonus: $(BONUS_OBJS) $(NAME)
+	@ar rcs $(NAME) $(BONUS_OBJS)
+	
 $(BONUS_OBJS): %.o: %.c
 	@echo "$(YELLOW)Compiling $<...$(RESET)"
 	$(CC) $(CFLAGS) -c $< -o $@
 	@echo "$(GREEN)Bonus file compiled successfully!$(RESET)"
 
 clean:
-	@echo "$(RED)Removendo arquivos objeto...$(RESET)"
+	@echo "$(RED)Removing all object files...$(RESET)"
 	rm -f $(OBJS) $(BONUS_OBJS)
-
+	
 fclean: clean
-	@echo "$(RED)Removendo a biblioteca $(NAME)...$(RESET)"
+	@echo "$(RED)Removing the library $(NAME)...$(RESET)"
 	rm -f $(NAME)
+	@echo "$(GREEN)Library $(NAME) successfully removed!$(RESET)"
 
 re: fclean all
 
-rebonus: fclean bonus
+rebonus: re bonus
 
 .PHONY: all clean fclean re bonus
