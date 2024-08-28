@@ -6,7 +6,7 @@
 #    By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/29 11:32:47 by ansebast          #+#    #+#              #
-#    Updated: 2024/08/20 15:11:06 by ansebast         ###   ########.fr        #
+#    Updated: 2024/08/28 06:57:16 by ansebast         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -90,7 +90,7 @@ so:
 
 clean:
 	@echo "$(RED)Removing all object files...$(RESET)"
-	rm -f $(OBJS) $(BONUS_OBJS)
+	rm -f $(OBJS) $(BONUS_OBJS) libft.so
 	
 fclean: clean
 	@echo "$(RED)Removing the library $(NAME)...$(RESET)"

@@ -6,7 +6,7 @@
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 11:28:38 by ansebast          #+#    #+#             */
-/*   Updated: 2024/08/15 11:43:55 by ansebast         ###   ########.fr       */
+/*   Updated: 2024/08/27 13:35:55 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ char	*ft_itoa(int nbr)
 		return (ft_strdup("-2147483648"));
 	if (n == 0)
 		return (ft_strdup("0"));
-	number = (char *)malloc((count + 1) * sizeof(char));
+	number = (char *)ft_calloc((count + 1), sizeof(char));
 	if (n < 0)
 	{
 		n = -n;

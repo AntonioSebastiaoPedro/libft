@@ -6,7 +6,7 @@
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 11:31:04 by ansebast          #+#    #+#             */
-/*   Updated: 2024/08/14 19:04:46 by ansebast         ###   ########.fr       */
+/*   Updated: 2024/08/27 13:37:11 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ft_strdup(const char *str)
 	size_t	size;
 
 	size = ft_strlen(str) + 1;
-	str2 = (char *)malloc(size);
+	str2 = (char *)ft_calloc(1, size);
 	if (!str2)
 		return (NULL);
 	ft_memcpy(str2, str, size);

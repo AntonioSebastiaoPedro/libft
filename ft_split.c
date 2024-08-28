@@ -6,7 +6,7 @@
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 11:30:48 by ansebast          #+#    #+#             */
-/*   Updated: 2024/08/14 19:16:26 by ansebast         ###   ########.fr       */
+/*   Updated: 2024/08/27 13:36:56 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ char	**ft_split(char const *s, char c)
 
 	i = 0;
 	j = 0;
-	tab = (char **)malloc((ft_wdlen(s, c) + 1) * sizeof(char *));
+	tab = (char **)ft_calloc((ft_wdlen(s, c) + 1), sizeof(char *));
 	if (!s || !tab)
 		return (NULL);
 	while (s[i])
