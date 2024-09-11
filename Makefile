@@ -6,7 +6,7 @@
 #    By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/29 11:32:47 by ansebast          #+#    #+#              #
-#    Updated: 2024/09/11 18:59:57 by ansebast         ###   ########.fr        #
+#    Updated: 2024/09/11 19:05:23 by ansebast         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,7 +77,9 @@ $(NAME): $(OBJS)
 	@echo "$(GREEN)Library $(NAME) successfully created!$(RESET)"
 
 bonus: $(OBJS) $(BONUS_OBJS)
+	@echo "$(CYAN)Adding bonus files...$(RESET)"
 	@ar rcs $(NAME) $(OBJS) $(BONUS_OBJS)
+	@echo "$(GREEN)Bonus files added successfully!$(RESET)"
 
 clean:
 	@echo "$(RED)Removing all object files...$(RESET)"
