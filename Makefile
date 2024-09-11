@@ -6,7 +6,7 @@
 #    By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/29 11:32:47 by ansebast          #+#    #+#              #
-#    Updated: 2024/09/11 18:21:07 by ansebast         ###   ########.fr        #
+#    Updated: 2024/09/11 18:59:57 by ansebast         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,11 +78,6 @@ $(NAME): $(OBJS)
 
 bonus: $(OBJS) $(BONUS_OBJS)
 	@ar rcs $(NAME) $(OBJS) $(BONUS_OBJS)
-
-.o: .c
-	@echo "$(YELLOW)Compiling $<...$(RESET)"
-	$(CC) $(CFLAGS) -c $< -o $@
-	@echo "$(GREEN)File compiled successfully!$(RESET)"
 
 clean:
 	@echo "$(RED)Removing all object files...$(RESET)"
