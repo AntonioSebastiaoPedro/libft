@@ -6,13 +6,16 @@
 /*   By: ansebast <ansebast@student.42luanda.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 11:32:38 by ansebast          #+#    #+#             */
-/*   Updated: 2024/08/15 11:52:49 by ansebast         ###   ########.fr       */
+/*   Updated: 2024/09/27 13:00:17 by ansebast         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
 # include <stddef.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -40,6 +43,7 @@ int		ft_isascii(int c);
 int		ft_atoi(const char *str);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char	*ft_itoa(int n);
+char	*get_next_line(int fd);
 char	**ft_split(char const *str, char c);
 char	*ft_strtrim(const char *s1, const char *set);
 char	*ft_strjoin(const char *s1, const char *s2);
